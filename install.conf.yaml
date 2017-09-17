@@ -9,5 +9,5 @@
         path: ssh/config
         create: true
     ~/.zshrc: zshrc
-
-
+    ~/.vim: vim
+    ~/.vimrc: vimrc

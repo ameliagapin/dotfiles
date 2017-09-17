@@ -6,14 +6,14 @@ source "${GITAWAREPROMPT}/main.sh"
 # No emoji
 # PS1="[\u@:$(scutil --get ComputerName) \W \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]]\$ "
 # emoji!
-ME_EMOJI=(🙄 🙏 ☠️ 💩 🔪 🖕)
+ME_EMOJI=(🙄 🙏 ☠️ 💩 🔪 🖕 🤷‍ 👩‍💻)
 INDEX=$[RANDOM%6]
-RANDOM_ME_EMOJI=${ME_EMOJI[$INDEX]}
-PS1="\[👩‍💻‍\]  \u 💻  $(scutil --get ComputerName) 🤷  \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] $RANDOM_ME_EMOJI  "
+RANDOM_EMOJI=${ME_EMOJI[$INDEX]}
+PS1="\[\033[38;5;14m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;10m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\] \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] $RANDOM_EMOJI  "
+# PS1="\u@$(scutil --get ComputerName) \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] $RANDOM_EMOJI  "
 
 # GO
 export GOPATH=$HOME/Projects/go
-export GOPATH=/bitly
 export PATH=$PATH:$(go env GOPATH)/bin
 
 # bash completion
