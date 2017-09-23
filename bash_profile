@@ -1,63 +1,56 @@
-# prompt
-# https://github.com/jimeh/git-aware-prompt
-export GITAWAREPROMPT=~/.bash/git-aware-prompt
-source "${GITAWAREPROMPT}/main.sh"
-
-# No emoji
-# PS1="[\u@:$(scutil --get ComputerName) \W \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]]\$ "
-# emoji!
-ME_EMOJI=(🙄 🙏 ☠️ 💩 🔪 🖕 🤷‍ 👩‍💻)
-INDEX=$[RANDOM%6]
-RANDOM_EMOJI=${ME_EMOJI[$INDEX]}
-PS1="\[\033[38;5;14m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;10m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\] \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] $RANDOM_EMOJI  "
-# PS1="\u@$(scutil --get ComputerName) \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] $RANDOM_EMOJI  "
+# Add `~/bin` to the `$PATH`
+export PATH="$HOME/bin:$PATH";
 
 # GO
 export GOPATH=$HOME/Projects/go
 export PATH=$PATH:$(go env GOPATH)/bin
 
-# bash completion
-# http://blog.taylormcgann.com/tag/gitconfig/
-# https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
+# Add `~/.nvm` to the `$PATH`
+export NVM_DIR="$HOME/.nvm"
+  . "/usr/local/opt/nvm/nvm.sh"
 
-# This makes nvm available on login
-# if [ -x "$(command -v brew)" ]; then
-#  export NVM_DIR=~/.nvm
-#  source $(brew --prefix nvm)/nvm.sh
-# fi
+#Load the shell dotfiles, and then some:
+# * ~/.path can be used to extend `$PATH`.
+# * ~/.extra can be used for other settings you don’t want to commit.
+for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file;
 
-# mysql
-alias mysql=/usr/local/mysql/bin/mysql
-alias mysqladmin=/usr/local/mysql/bin/mysqladmin
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob;
 
-# aliases
-alias p="atom ~/.bash_profile"
-alias s="source ~/.bash_profile"
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend;
 
-# directory aliases
-alias dev="cd ~/Projects/devvm"
-alias bitly="cd /bitly"
-alias data="cd /data"
-alias mountall="sudo mount /bitly && sudo mount /data"
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell;
 
-## vagrant
-alias vp="vagrant provision"
+# Enable some Bash 4 features when possible:
+# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
+# * Recursive globbing, e.g. `echo **/*.txt`
+for option in autocd globstar; do
+	shopt -s "$option" 2> /dev/null;
+done;
 
-## git
-alias gdelmerged="git branch --merged | grep -v \* | grep -v '^\s*master$' | grep -v '^\s*develop$' | xargs -t -n 1 git branch -d"
-alias gp='git pull'
-alias gc="git checkout"
-alias gcm="git checkout master"
-alias gpm="git pull origin master"
-alias gnb="git checkout -b"
-alias gcmp="git checkout master && git pull"
+# Add tab completion for many Bash commands
+if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
+	source "$(brew --prefix)/share/bash-completion/bash_completion";
+elif [ -f /etc/bash_completion ]; then
+	source /etc/bash_completion;
+fi;
 
-# Setting PATH for Python 3.5
-# The orginal version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
-export PATH
+# Enable tab completion for `g` by marking it as an alias for `git`
+if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+	complete -o default -o nospace -F _git g;
+fi;
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+
+# Add tab completion for `defaults read|write NSGlobalDomain`
+# You could just use `-g` instead, but I like being explicit
+complete -W "NSGlobalDomain" defaults;
+
+# Add `killall` tab completion for common apps
+complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
