@@ -100,12 +100,17 @@ PathShort="\w"
 PathFull="\W"
 NewLine="\n"
 
+ME_EMOJI=(🙄 🙏 ☠️ 💩 🔪 🖕 🤷‍ 👩‍💻)
+INDEX=$[RANDOM%6]
+RANDOM_EMOJI=${ME_EMOJI[$INDEX]}
+
 # Set the terminal title and prompt.
-PS1="\[${bold}\]\n"; # newline
-PS1+=$IBlack$Time12h$Color_Off;
+# PS1="\[${bold}\]\n"; # newline
+PS1=$IBlack$Time12h$Color_Off;
 PS1+="\[${Cyan}\] \u";
 PS1+="\[${White}\]@";
-PS1+="\[${IBlue}\]\h"; # host
+PS1+="\[${IBlue}\]\h"; # hosRR
+PS1+=" $BYellow$PathShort$Color_Off";
 PS1+='$(git branch &>/dev/null;\
  if [ $? -eq 0 ]; then \
      echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
@@ -115,11 +120,8 @@ PS1+='$(git branch &>/dev/null;\
      else \
          # @5 - Changes to working tree
          echo "'$IRed'"$(__git_ps1 " {%s}"); \
-     fi) '$BYellow$PathShort$Color_Off'"; \
- else \
-     # @2 - Prompt when not in GIT repo
-     echo " '$Yellow$PathShort$Color_Off'"; \
+     fi) "; \
  fi)';
 
-PS1+="\[${Color_Off}\]\n\$ "; # `$` (and reset color)
+PS1+="\[${Color_Off}\]$RANDOM_EMOJI  "; # `$` (and reset color)
 export PS1;
