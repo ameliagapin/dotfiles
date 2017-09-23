@@ -121,6 +121,8 @@ PS1+='$(git branch &>/dev/null;\
          # @5 - Changes to working tree
          echo "'$IRed'"$(__git_ps1 " {%s}"); \
      fi) "; \
+ else \
+     echo " ";\
  fi)';
 
 PS1+="\[${Color_Off}\]$RANDOM_EMOJI  "; # `$` (and reset color)
