@@ -145,4 +145,12 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]] ; then
     fi
 fi
 
+
+###############################################################################
+# Make sure the latest version of bash is being used
+###############################################################################
+
+sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
+chsh -s /usr/local/bin/bash
+
 pecho "Done!" 2
