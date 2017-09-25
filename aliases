@@ -36,6 +36,7 @@ alias p="atom ~/.bash_profile"
 
 # vagrant
 alias vp="vagrant provision"
+alias vs="vagrant ssh"
 
 # git
 alias gdelmerged="git branch --merged | grep -v \* | grep -v '^\s*master$' | grep -v '^\s*develop$' | xargs -t -n 1 git branch -d"
