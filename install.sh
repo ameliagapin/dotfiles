@@ -41,6 +41,10 @@ vim -E -s <<-EOF
     :qa
 EOF
 
+# Compile YouCompleteMe
+cd ~/.vim/bundle/YouCompleteMe
+./install.py --all
+
 ###############################################################################
 # Powerline fonts
 ###############################################################################
@@ -154,3 +158,11 @@ sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
 chsh -s /usr/local/bin/bash
 
 pecho "Done!" 2
+
+# TODO: Add for linux
+# nodejs
+# htop
+# gtop
+# bash_completion
+# git
+# nvm
