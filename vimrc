@@ -21,7 +21,11 @@ Plug 'mtscout6/syntastic-local-eslint.vim'
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'w0rp/ale'
 Plug 'fatih/vim-go'
+Plug 'severin-lemaignan/vim-minimap'
 call plug#end()
+
+" Turn off line wrapping
+set nowrap
 
 " Colorz
 set background=dark
@@ -155,7 +159,7 @@ set showcmd
 " endif
 
 " Start scrolling three lines before the horizontal window border
-set scrolloff=5
+set scrolloff=3
 
 " Set the spellchecking language.
 set spelllang=en_us
@@ -165,7 +169,7 @@ set spelllang=en_us
 set smartcase
 
 " Allow cursor to be anywhere.
-set virtualedit=all
+" set virtualedit=all
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
@@ -205,8 +209,16 @@ inoremap <A-h> <C-o>h
 inoremap <A-j> <C-o>j
 inoremap <A-k> <C-o>k
 inoremap <A-l> <C-o>l
+inoremap <C-n> :NERDTreeToggle<CR>
 
- " ----------------------------------------------------------------------
+" Map ctrl-movement keys to window switching
+map <C-w> <C-w><C-w>
+
+" Switch to alternate buffer
+noremap <C-j> :bnext<cr>
+noremap <C-k> :bprevious<cr>
+
+" ----------------------------------------------------------------------
 " | Helper Functions                                                   |
 " ----------------------------------------------------------------------
 
@@ -265,14 +277,15 @@ highlight User1
 "
 " NERDTree
 "
-autocmd VimEnter * wincmd p    " Have cursor start in file window
+" autocmd VimEnter * wincmd p    " Have cursor start in file window
 map <C-n> :NERDTreeToggle<CR>  " Map toggle to crtl-n
 let NERDTreeShowHidden=1       " Show hidden files
 " Better color for directories
 autocmd VimEnter,ColorScheme * :hi Directory guifg=#FF0000 ctermfg=red
 " Close vim if nerdtree is the only window open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "
 " Ale - linting
 "
@@ -281,9 +294,8 @@ let g:ale_sign_warning = '⚠️ '
 highlight ALEErrorSign cterm=NONE ctermfg=black ctermbg=yellow
 highlight clear ALEWarningSign
 let g:airline#extensions#ale#enabled = 1
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-l> <Plug>(ale_next_wrap)
-
+nmap <silent> <C-S-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-S-l> <Plug>(ale_next_wrap)
 
 "
 " Syntastic
@@ -317,6 +329,14 @@ nmap <silent> <C-l> <Plug>(ale_next_wrap)
 "
 let g:airline#extensions#tabline#enabled = 1
 " let g:airline_powerline_fonts = 1
+" Show buffer numbers next to buffer names
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
+"
+" VIM-Minimap
+"
+let g:minimap_highlight='Statement'
+
 
 "
 " NERDCommenter
