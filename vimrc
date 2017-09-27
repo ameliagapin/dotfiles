@@ -35,7 +35,7 @@ colorscheme peachpuff
 set nocompatible
 
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
-" set clipboard=unnamed
+set clipboard=unnamed
 
 " Enhance command-line completion
 set wildmenu
@@ -197,6 +197,13 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
 
+" Autoreload files changed outside of buffer
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+" Notification after file change
+autocmd FileChangedShellPost *
+   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl Nonei
+
+
 " Better comment color
 highlight Comment ctermfg=Gray
 
@@ -210,6 +217,9 @@ inoremap <A-j> <C-o>j
 inoremap <A-k> <C-o>k
 inoremap <A-l> <C-o>l
 inoremap <C-n> :NERDTreeToggle<CR>
+
+map <C-L> 20zl " Scroll 20 characters to the right
+map <C-H> 20zh " Scroll 20 characters to the left
 
 " Map ctrl-movement keys to window switching
 map <C-w> <C-w><C-w>

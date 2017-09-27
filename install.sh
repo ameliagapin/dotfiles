@@ -116,6 +116,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]] ; then
 
       # Misc useful formulae (brew list -la | awk '{a="brew install "$9; print a}' | pbcopy)
       brew install ack
+      brew install diff-so-fancy
       brew install findutils
       brew install fpp
       brew install gifsicle
