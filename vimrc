@@ -17,7 +17,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'valloric/youcompleteme'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mtscout6/syntastic-local-eslint.vim'
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'w0rp/ale'
 Plug 'fatih/vim-go'
@@ -296,16 +295,21 @@ autocmd VimEnter,ColorScheme * :hi Directory guifg=#FF0000 ctermfg=red
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 "
 " Ale - linting
 "
-let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️ '
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
 highlight ALEErrorSign cterm=NONE ctermfg=black ctermbg=yellow
 highlight clear ALEWarningSign
+let g:ale_sign_column_always = 1
 let g:airline#extensions#ale#enabled = 1
 nmap <silent> <C-S-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-S-l> <Plug>(ale_next_wrap)
+let g:ale_linters = {
+\   'python': ['pep8'],
+\}
 
 "
 " Syntastic
