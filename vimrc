@@ -21,14 +21,16 @@ Plug 'jszakmeister/vim-togglecursor'
 Plug 'w0rp/ale'
 Plug 'fatih/vim-go'
 Plug 'severin-lemaignan/vim-minimap'
+Plug 'godlygeek/csapprox'
 call plug#end()
 
 " Turn off line wrapping
 set nowrap
 
 " Colorz
+set t_Co=256
 set background=dark
-colorscheme peachpuff
+colorscheme afterglow
 
 " Make Vim more useful
 set nocompatible
@@ -204,7 +206,7 @@ autocmd FileChangedShellPost *
 
 
 " Better comment color
-highlight Comment ctermfg=Gray
+" highlight Comment ctermfg=Gray
 
 " Better search and selection highlighting
 hi Search cterm=NONE ctermfg=black ctermbg=yellow
@@ -345,6 +347,7 @@ let g:airline#extensions#tabline#enabled = 1
 " let g:airline_powerline_fonts = 1
 " Show buffer numbers next to buffer names
 let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline_theme='afterglow'
 
 "
 " VIM-Minimap
