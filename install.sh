@@ -138,6 +138,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]] ; then
       brew install sqlite
       brew install the_silver_searcher
       brew install thefuck
+      brew install tig
       brew install tmux
       brew install tofrodos
       brew install tree
@@ -150,6 +151,16 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]] ; then
     fi
 fi
 
+###############################################################################
+# Install pip packages
+###############################################################################
+
+pecho "Would you like to install pip packages? [y/N] "
+read -r response ; tput sgr0
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]] ; then
+    echo "Installing pip packages:"
+    pip install glances[action,browser,cloud,cpuinfo,chart,docker,export,folders,gpu,ip,raid,snmp,web,wifi]
+fi
 
 ###############################################################################
 # Make sure the latest version of bash is being used
