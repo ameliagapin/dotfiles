@@ -230,6 +230,13 @@ noremap <C-j> :bnext<cr>
 noremap <C-k> :bprevious<cr>
 
 " ----------------------------------------------------------------------
+" | Use The Silver Searcher                                            |
+" ----------------------------------------------------------------------
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" ----------------------------------------------------------------------
 " | Helper Functions                                                   |
 " ----------------------------------------------------------------------
 
@@ -294,7 +301,7 @@ let NERDTreeShowHidden=1       " Show hidden files
 " Better color for directories
 autocmd VimEnter,ColorScheme * :hi Directory guifg=#FF0000 ctermfg=red
 " Close vim if nerdtree is the only window open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
