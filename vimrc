@@ -401,6 +401,11 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)|node_modules$'
 
 "
+" vimgo
+"
+let g:go_fmt_command = "goimports"
+
+"
 " YouCompleteMe
 "
 let g:ycm_autoclose_preview_window_after_completion = 1
