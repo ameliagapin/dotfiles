@@ -296,7 +296,8 @@ highlight User1
 " NERDTree
 "
 " autocmd VimEnter * wincmd p    " Have cursor start in file window
-map <C-n> :NERDTreeToggle<CR>  " Map toggle to crtl-n
+nmap <C-n> :NERDTreeToggle<CR>  " Map toggle to crtl-n
+nmap <C-m> :NERDTreeFind<CR>   " Map show current file to ctrl-m
 let NERDTreeShowHidden=1       " Show hidden files
 " Better color for directories
 autocmd VimEnter,ColorScheme * :hi Directory guifg=#FF0000 ctermfg=red
