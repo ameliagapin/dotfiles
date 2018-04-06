@@ -355,7 +355,7 @@ let g:airline#extensions#tabline#enabled = 1
 " let g:airline_powerline_fonts = 1
 " Show buffer numbers next to buffer names
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline_theme='afterglow'
+" let g:airline_theme='afterglow'
 
 "
 " VIM-Minimap
