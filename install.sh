@@ -42,8 +42,8 @@ vim -E -s <<-EOF
 EOF
 
 # Compile YouCompleteMe
-cd ~/.vim/bundle/YouCompleteMe
-./install.py --all
+cd ~/.vim/plugged/YouCompleteMe
+/usr/bin/python ./install.py --all
 
 ###############################################################################
 # Powerline fonts
@@ -129,6 +129,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]] ; then
       brew install lynx
       brew install mongodb
       brew install mysql
+      brew install mycli
       brew install nmap
       brew install nvm
       brew install openssl
@@ -163,6 +164,12 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]] ; then
 fi
 
 ###############################################################################
+# Install npm packages
+###############################################################################
+
+npm install -g tldr
+
+###############################################################################
 # Make sure the latest version of bash is being used
 ###############################################################################
 
@@ -178,3 +185,6 @@ pecho "Done!" 2
 # bash_completion
 # git
 # nvm
+# vim8
+# mycli
+
