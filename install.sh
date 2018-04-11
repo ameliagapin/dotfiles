@@ -150,7 +150,11 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]] ; then
       brew cask install atom
       brew cask install mackdown
       brew cask install virtualbox
+
       brew cask install vagrant
+      vagrant plugin install vagrant-s3auth
+      vagrant plugin install vagrant-aws
+
       brew cask install macvim
       brew cask install dash
       brew cask install cheatsheat
