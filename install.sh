@@ -141,9 +141,23 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]] ; then
       brew install thefuck
       brew install tig
       brew install tmux
-      brew install tofrodos
       brew install tree
       brew install z
+
+      brew cask install iterm2
+      brew cask install google-chrome
+      brew cask install coderunner
+      brew cask install atom
+      brew cask install mackdown
+      brew cask install virtualbox
+      brew cask install vagrant
+      brew cask install macvim
+      brew cask install dash
+      brew cask install cheatsheat
+      brew cask install rocket
+      brew cask install dropbox
+      brew cask install postman
+      brew cask install google-drive-file-stream
 
       brew cleanup
 

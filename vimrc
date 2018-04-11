@@ -217,8 +217,6 @@ inoremap <A-h> <C-o>h
 inoremap <A-j> <C-o>j
 inoremap <A-k> <C-o>k
 inoremap <A-l> <C-o>l
-inoremap <C-n> :NERDTreeToggle<CR>
-inoremap <C-m> :NERDTreeFind<CR>
 
 map <C-L> 20zl " Scroll 20 characters to the right
 map <C-H> 20zh " Scroll 20 characters to the left
