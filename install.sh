@@ -156,6 +156,7 @@ if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]] ; then
       vagrant plugin install vagrant-aws
 
       brew cask install macvim
+      brew cask install macdown
       brew cask install dash
       brew cask install cheatsheat
       brew cask install rocket
