@@ -46,7 +46,6 @@ alias gcm="git checkout master"
 alias gpm="git pull origin master"
 alias gnb="git checkout -b"
 alias gcmp="git checkout master && git pull"
-alias gopen="vim `git_open`"
 
 ###############################################################################
 # Bitly                                                                       #
