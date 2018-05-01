@@ -29,36 +29,6 @@ git submodule update --init --recursive "${DOTBOT_DIR}"
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
 
 ###############################################################################
-# Update Vim plugins
-###############################################################################
-
-pecho "Cleaning/Installing/Updating Vim plugins:\n"
-
-vim -E -s <<-EOF
-    :source ~/.vimrc
-    :PlugInstall
-    :PlugClean
-    :qa
-EOF
-
-# Compile YouCompleteMe
-cd ~/.vim/plugged/youcompleteme
-/usr/bin/python ./install.py --all
-
-###############################################################################
-# Powerline fonts
-###############################################################################
-
-pecho "Would you like to install powerline fonts (for vim-airline)? [y/N] "
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]
-then
-    source ./fonts/powerline-fonts/install.sh
-else
-    echo "Skipped installation of powerline fonts"
-fi
-
-###############################################################################
 # Install brew + formulae (macOS only)
 ###############################################################################
 
@@ -196,7 +166,45 @@ npm install -g tldr
 sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
 chsh -s /usr/local/bin/bash
 
+###############################################################################
+# Update Vim plugins
+###############################################################################
+
+pecho "Cleaning/Installing/Updating Vim plugins:\n"
+
+vim -E -s <<-EOF
+    :source ~/.vimrc
+    :PlugInstall
+    :PlugClean
+    :qa
+EOF
+
+# Compile YouCompleteMe
+cd ~/.vim/plugged/youcompleteme
+/usr/bin/python ./install.py --all
+
+###############################################################################
+# Powerline fonts
+###############################################################################
+
+pecho "Would you like to install powerline fonts (for vim-airline)? [y/N] "
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+    source ./fonts/powerline-fonts/install.sh
+else
+    echo "Skipped installation of powerline fonts"
+fi
+
+###############################################################################
+# Finish
+###############################################################################
+
 pecho "Done!" 2
+
+###############################################################################
+# TODO
+###############################################################################
 
 # TODO: Add for linux
 # nodejs
