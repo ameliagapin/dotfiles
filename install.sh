@@ -42,7 +42,7 @@ vim -E -s <<-EOF
 EOF
 
 # Compile YouCompleteMe
-cd ~/.vim/plugged/YouCompleteMe
+cd ~/.vim/plugged/youcompleteme
 /usr/bin/python ./install.py --all
 
 ###############################################################################
