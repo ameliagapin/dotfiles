@@ -100,7 +100,7 @@ PathShort="\w"
 PathFull="\W"
 NewLine="\n"
 
-ME_EMOJI=(🙄 🙏 ☠️ 💩 🔪 🖕 🤷‍ 👩‍💻)
+ME_EMOJI=(🙄 🙏 ☠️  💩 🔪 🖕 🤷 👩 💻)
 INDEX=$[RANDOM%6]
 RANDOM_EMOJI=${ME_EMOJI[$INDEX]}
 
