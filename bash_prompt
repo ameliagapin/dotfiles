@@ -3,7 +3,7 @@
 # No emoji
 # PS1="[\u@:$(scutil --get ComputerName) \W \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]]\$ "
 # emoji!
-# ME_EMOJI=(🙄 🙏 ☠️ 💩 🔪 🖕 🤷‍ 👩‍💻)
+# ME_EMOJI=(🙄 🙏 ☠️ 💩 🔪 🖕 🤷 👩 💻)
 # INDEX=$[RANDOM%6]
 # RANDOM_EMOJI=${ME_EMOJI[$INDEX]}
 # PS1="\[\033[38;5;14m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;10m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\] \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] $RANDOM_EMOJI  "
@@ -102,28 +102,29 @@ NewLine="\n"
 
 ME_EMOJI=(🙄 🙏 ☠️  💩 🔪 🖕 🤷 👩 💻)
 INDEX=$[RANDOM%6]
-RANDOM_EMOJI=${ME_EMOJI[$INDEX]}
+RANDOM_EMOJI="${ME_EMOJI[$INDEX]}"
 
 # Set the terminal title and prompt.
 # PS1="\[${bold}\]\n"; # newline
-PS1=$IBlack$Time12h$Color_Off;
+PS1="\[$IBlack$Time12h$Color_Off\]";
 PS1+="\[${Cyan}\] \u";
 PS1+="\[${White}\]@";
 PS1+="\[${IBlue}\]\h"; # hosRR
-PS1+=" $BYellow$PathShort$Color_Off";
+PS1+="\[ $BYellow$PathShort$Color_Off\]";
 PS1+='$(git branch &>/dev/null;\
  if [ $? -eq 0 ]; then \
      echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
      if [ "$?" -eq "0" ]; then \
          # @4 - Clean repository - nothing to commit
-         echo "'$Green'"$(__git_ps1 " (%s)"); \
+         echo "\['$Green'\]"\[$(__git_ps1 "\[ (\[%s\])\]")\]; \
      else \
          # @5 - Changes to working tree
-         echo "'$IRed'"$(__git_ps1 " {%s}"); \
-     fi) "; \
+         echo "\['$IRed'\]"\[$(__git_ps1 "\[ {\[%s\]}\]")\]; \
+     fi)"; \
  else \
-     echo " ";\
+     echo "\[ \]";\
  fi)';
 
-PS1+="\[${Color_Off}\]$RANDOM_EMOJI  "; # `$` (and reset color)
+PS1+="\[${Color_Off}\]"
+PS1+="\[${RANDOM_EMOJI}\]\[  \]"; # `$` (and reset color)
 export PS1;
