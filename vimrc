@@ -22,6 +22,7 @@ Plug 'w0rp/ale'
 Plug 'fatih/vim-go'
 Plug 'severin-lemaignan/vim-minimap'
 Plug 'godlygeek/csapprox'
+Plug 'leafgarland/typescript-vim'
 call plug#end()
 
 " Turn off line wrapping
