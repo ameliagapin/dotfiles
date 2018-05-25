@@ -23,6 +23,7 @@ Plug 'fatih/vim-go'
 Plug 'severin-lemaignan/vim-minimap'
 Plug 'godlygeek/csapprox'
 Plug 'leafgarland/typescript-vim'
+Plug 'rking/ag.vim'
 call plug#end()
 
 " Turn off line wrapping
@@ -232,8 +233,8 @@ noremap <C-k> :bprevious<cr>
 " ----------------------------------------------------------------------
 " | Use The Silver Searcher                                            |
 " ----------------------------------------------------------------------
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-nnoremap \ :Ag<SPACE>
+" command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag -C <SPACE>
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " ----------------------------------------------------------------------
@@ -400,6 +401,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)|node_modules$'
+noremap <C-b> :CtrlPBuffer<cr>
 
 "
 " vimgo
