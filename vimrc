@@ -7,6 +7,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 " Plug ins, managed by vim-plug
+function! BuildYCM(info)
+  if a:info.status == 'installed' || a:info.force
+    !/usr/bin/python install.py --all
+  endif
+endfunction
+
 call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
@@ -14,17 +20,21 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
-Plug 'valloric/youcompleteme'
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'w0rp/ale'
-Plug 'fatih/vim-go'
-Plug 'severin-lemaignan/vim-minimap'
 Plug 'godlygeek/csapprox'
-Plug 'leafgarland/typescript-vim'
 Plug 'rking/ag.vim'
-Plug 'leafgarland/typescript-vim'
+Plug 'powerline/powerline-fonts'
+Plug 'luochen1990/rainbow'
+
+" Language support
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'lstinson/tclshell-vim', { 'for': 'tcl' }
+Plug 'kevinw/pyflakes-vim', { 'for': 'python' }
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 call plug#end()
 
 " Turn off line wrapping
@@ -32,6 +42,10 @@ set nowrap
 
 " Set noshowmode to hide --INSERT-- from status line
 set noshowmode
+
+" For pyflakes
+filetype on            " enables filetype detection
+filetype plugin on     " enables filetype specific plugins
 
 " Colorz
 set t_Co=256
@@ -72,11 +86,16 @@ let mapleader=","
 set nobackup
 set noswapfile
 if exists("&undodir")
+    set undofile " Maintain undo history between sessions
     set undodir=~/.vim/undo
 endif
 
 " Don’t create backups when editing files in certain directories
 set backupskip=/tmp/*,/private/tmp/*
+
+" Folding
+set foldmethod=indent
+set nofoldenable
 
 " Respect modeline in files
 set modeline
@@ -120,8 +139,11 @@ set ignorecase
 " Highlight dynamically as pattern is typed
 set incsearch
 
-" Clear previous search highlighting by hitting enter
-nnoremap <CR> :noh<CR><CR>
+" Clear previous search highlighting by hitting ESC ESC
+nnoremap <ESC><ESC> :noh<CR><CR>
+
+" Map 00 to ^ for going to the first non-whitespace character on a line
+noremap 00 ^
 
 " Always show status line
 set laststatus=2
@@ -327,33 +349,6 @@ let g:ale_linters = {
 \}
 
 "
-" Syntastic
-"
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-"
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_loc_list_height = 5
-" let g:syntastic_auto_loc_list = 0
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 1
-" let g:syntastic_javascript_checkers = ['eslint']
-"
-" let g:syntastic_error_symbol = '❌'
-" let g:syntastic_style_error_symbol = '⁉️'
-" let g:syntastic_warning_symbol = '⚠️'
-" let g:syntastic_style_warning_symbol = '💩'
-"
-" highlight link SyntasticErrorSign SignColumn
-" highlight link SyntasticWarningSign SignColumn
-" highlight link SyntasticStyleErrorSign SignColumn
-" highlight link SyntasticStyleWarningSign SignColumn
-"
-" hi SpellBad ctermfg=black ctermbg=yellow
-" hi SpellCap ctermfg=black ctermbg=yellow
-
-"
 " Airline
 "
 let g:airline#extensions#tabline#enabled = 1
@@ -367,6 +362,10 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 "
 let g:minimap_highlight='Statement'
 
+"
+" Rainbow Parentheses
+"
+let g:rainbow_active = 1
 
 "
 " NERDCommenter
@@ -411,12 +410,22 @@ noremap <C-b> :CtrlPBuffer<cr>
 " vimgo
 "
 let g:go_auto_sameids = 1 " Auto higlight all references to symbol under the cursor
-set updatetime=100 " Update status line info every 100ms
+set updatetime=200 " Update status line info every 100ms
 let g:go_auto_type_info = 1 " Automatically show type info in status line for type under cursor
 let g:go_fmt_command = "goimports"
 let g:go_decls_includes = "func,type" " Show funcs and types in declaration list
 nmap <leader>gi :GoInfo<CR>  " Show method signature for a Go method in status line
 nmap <leader>gd :GoDoc<CR>  " Show info for a Go method in scratch area
+" Highlighting - This may slow vim down
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
 
 "
 " YouCompleteMe

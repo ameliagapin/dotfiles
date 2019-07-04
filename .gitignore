@@ -8,3 +8,9 @@
 ehthumbs.db
 Thumbs.db
 vim/plugged
+dotbot
+dotbot-apt-get
+dotbot-yum
+dotbot-npm
+dotbot-pip
+dotbot-brewfile
