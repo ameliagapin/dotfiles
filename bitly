@@ -6,6 +6,12 @@
 
 GOBIN=/bitly/local/go/bin
 export PATH=$PATH:/bitly/local/bin
+export PATH=$HOME/bin:$PATH;
+export PATH=$PATH:/usr/local/bin:/bitly/local/go/bin
+
+# GO
+export GOPATH=$HOME/Projects/go:$HOME/go
+export PATH=$PATH:$(go env GOPATH)/bin
 
 alias dev="cd ~/Projects/bitly"
 alias bitly="cd /bitly/src/github.com/bitly/bitly"

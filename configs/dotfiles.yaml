@@ -21,6 +21,5 @@
     ~/.exports: exports
     ~/.aliases: aliases
     ~/.tmux.conf: tmux.conf
-    ~/.oh-my-zsh: oh-my-zsh
     ~/.bitly: bitly
 

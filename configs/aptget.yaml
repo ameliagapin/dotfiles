@@ -9,9 +9,9 @@ repos:
 
 packages:
   - ack-grep
+  - zsh
   - vim
   - tmux
-  - zsh
   - automake
   - build-essential
   - linux-headers-generic

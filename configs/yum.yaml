@@ -8,6 +8,7 @@ repos:
 packages:
   - https://centos7.iuscommunity.org/ius-release.rpm
   - nodejs
+  - zsh
   - vim-enhanced
   - ack
   - bash-completion

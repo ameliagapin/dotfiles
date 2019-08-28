@@ -1,5 +1,6 @@
 Host *
-    CheckHostIP no
+  CheckHostIP no
+  SendEnv LANG
 Host 192.168.1.69
   ForwardAgent yes
 

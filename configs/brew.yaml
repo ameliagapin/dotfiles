@@ -5,6 +5,10 @@ tap:
   - homebrew/core
 
 packages:
+  - name: zsh
+    args: --
+  - name: zsh-completions
+    args: --
   - name: ack
     args: --
   - name: bash

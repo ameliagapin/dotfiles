@@ -60,3 +60,4 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 export HISTCONTROL=erasedups
 export HISTSIZE=10000
 
+export PATH=/bitly/local/bin:$PATH

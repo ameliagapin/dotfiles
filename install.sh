@@ -170,15 +170,27 @@ fi
 # Powerline fonts
 ###############################################################################
 
-pecho "Would you like to install powerline fonts (for vim-airline)? [y/N] "
+pecho "Would you like to install powerline fonts (for vim and zsh)? [y/N] "
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]] ; then
     cd ~/.vim/plugged/powerline-fonts
     if [ $? -eq 0 ]; then
         ./install.sh
-        cd "${BASEDIR}"
+    fi
+
+    git clone https://github.com/powerline/fonts.git --depth=1
+    if [ $? -eq 0 ]; then
+        cd fonts
+        if [ $? -eq 0 ]; then
+           ./install.sh
+            cd ..
+            rm -rf fonts
+        fi
     fi
 fi
+
+cd "${BASEDIR}"
+
 
 ###############################################################################
 # Configure ZSH

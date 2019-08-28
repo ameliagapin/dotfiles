@@ -29,7 +29,7 @@ clone() {
         git clone $SRC $LOC || exit 1
     else
         cd $LOC
-        git pull $SRC || exit 1
+        git pull $SRC || true
     fi
 
     exit 0

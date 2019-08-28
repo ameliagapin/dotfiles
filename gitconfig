@@ -15,7 +15,7 @@
     undo = "reset HEAD~1 --mixed"
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+	l = "log --pretty=oneline -n 20 --graph --abbrev-commit"
 
 	# View the current working tree status using the short format
 	s = status -s
@@ -42,9 +42,6 @@
 	tags = tag -l
 	branches = branch -a
 	remotes = remote -v
-
-	# Amend the currently staged files to the latest commit
-	amend = commit --amend --reuse-message=HEAD
 
 	# Credit an author on the latest commit
 	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
@@ -76,23 +73,6 @@
 
 	# Merge GitHub pull request on top of the current branch or,
 	# if a branch name is specified, on top of the specified branch
-	mpr = "!f() { \
-		declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
-		declare branch=\"${2:-$currentBranch}\"; \
-		if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
-			git fetch origin refs/pull/$1/head:pr/$1 && \
-			git checkout -B $branch && \
-			git rebase $branch pr/$1 && \
-			git checkout -B $branch && \
-			git merge pr/$1 && \
-			git branch -D pr/$1 && \
-			git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
-		fi \
-	}; f"
-
-	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %ad%Cred%d\\ %Creset%s%Cblue\\ %C(green)[%cn]" --decorate --date=relative
-	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ %C(green)[%cn]" --decorate --numstat
-	ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ %C(green)[%cn]" --decorate --date=default
 	cp = cherry-pick
 	st = status -s
 	co = checkout
@@ -129,7 +109,7 @@
 	precomposeunicode = false
 
     # use diff-so-fancy
-	pager = diff-so-fancy | less --tabs=4 -RFX
+# 	pager = diff-so-fancy | less --tabs=4 -RFX
 
 [color]
 

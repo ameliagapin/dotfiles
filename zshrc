@@ -10,7 +10,10 @@ export ZSH="$HOME/.oh-my-zsh"
 export TERM="xterm-256color" # This sets up colors properly
 
 # set shell
-export SHELL=/usr/bin/zsh
+export SHELL=$(which zsh)
+
+# export nvm
+export NVM_DIR="$HOME/.nvm"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -19,6 +22,8 @@ export SHELL=/usr/bin/zsh
 #
 # https://github.com/denysdovhan/spaceship-prompt/blob/master/docs/Options.md
 ZSH_THEME="spaceship"
+
+# Spaceship settings
 SPACESHIP_PROMPT_ORDER=(
     time
     user
@@ -30,6 +35,8 @@ SPACESHIP_PROMPT_ORDER=(
     line_sep
     char
 )
+SPACESHIP_USER_SHOW="always"
+SPACESHIP_HOST_SHOW="always"
 SPACESHIP_PROMPT_ADD_NEWLINE="false"
 SPACESHIP_PROMPT_SEPARATE_LINE="true"
 SPACESHIP_TIME_SHOW="true"
@@ -39,6 +46,7 @@ SPACESHIP_USER_PREFIX=" "
 SPACESHIP_USER_SUFFIX=""
 SPACESHIP_HOST_PREFIX="@"
 SPACESHIP_DIR_TRUNC_REPO="false"
+SPACESHIP_DIR_TRUNC_PREFIX=".../"
 SPACESHIP_GIT_STATUS_PREFIX=""
 SPACESHIP_GIT_STATUS_SUFFIX=""
 SPACESHIP_GIT_STATUS_MODIFIED="**"
@@ -139,9 +147,8 @@ fi
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
+#alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="vim ~/.zshrc"
 
 # Source extra files
 for file in ~/.{bitly,aliases,functions}; do
@@ -149,17 +156,7 @@ for file in ~/.{bitly,aliases,functions}; do
 done;
 unset file;
 
-# Set Spaceship ZSH as a prompt
-autoload -U promptinit; promptinit
-prompt spaceship
-
-fpath=($fpath "/home/vagrant/.zfunctions")
+fpath=($fpath "/root/.zfunctions")
 
 # Fire off neofetch
-APT_GET_CMD=$(which apt-get)
-if [[ ! -z $APT_GET_CMD ]] ; then
-  neofetch
-fi
-if [[ "$OSTYPE" =~ ^darwin ]] ; then
-  neofetch
-fi
+neofetch
