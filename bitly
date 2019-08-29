@@ -1,17 +1,11 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 ###############################################################################
 # Bitly                                                                       #
 ###############################################################################
 
-GOBIN=/bitly/local/go/bin
-export PATH=$PATH:/bitly/local/bin
-export PATH=$HOME/bin:$PATH;
-export PATH=$PATH:/usr/local/bin:/bitly/local/go/bin
-
-# GO
-export GOPATH=$HOME/Projects/go:$HOME/go
-export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$PATH:/usr/local/bin:/bitly/local/go/bin:/bitly/local/bin
+export GOBIN=$GOBIN:/bitly/local/go/bin
 
 alias dev="cd ~/Projects/bitly"
 alias bitly="cd /bitly/src/github.com/bitly/bitly"

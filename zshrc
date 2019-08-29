@@ -12,8 +12,6 @@ export TERM="xterm-256color" # This sets up colors properly
 # set shell
 export SHELL=$(which zsh)
 
-# export nvm
-export NVM_DIR="$HOME/.nvm"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -157,7 +155,7 @@ fi
 alias zshconfig="vim ~/.zshrc"
 
 # Source extra files
-for file in ~/.{bitly,aliases,functions}; do
+for file in ~/.{exports,bitly,aliases,functions}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;

@@ -156,12 +156,17 @@ read -r response ; tput sgr0
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]] ; then
     pecho "Cleaning/Installing/Updating Vim plugins:\n"
 
-    vim +PlugClean +PlugInstall +qall
+    vim +PlugClean +PlugUpdate +PlugInstall +qall
 
+    pecho "Installing YouCompleteMe...\n"
     cd ~/.vim/plugged/YouCompleteMe
     $(which python3) ./install.py --all
 
+    pecho "Creating vim undo directory...\n"
     mkdir -p ~/.vim/undo
+
+    pecho "Installing Go binaries...\n"
+    vim +GoInstallBinaries +qall
 
     cd "${BASEDIR}"
 fi
