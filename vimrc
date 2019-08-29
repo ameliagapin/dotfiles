@@ -29,7 +29,7 @@ Plug 'powerline/powerline-fonts'
 Plug 'luochen1990/rainbow'
 
 " Language support
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'fatih/vim-go', { 'tag': 'v1.18', 'do': ':GoInstallBinaries' }
 Plug 'lstinson/tclshell-vim', { 'for': 'tcl' }
 Plug 'kevinw/pyflakes-vim', { 'for': 'python' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }

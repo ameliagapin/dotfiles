@@ -155,7 +155,7 @@ fi
 alias zshconfig="vim ~/.zshrc"
 
 # Source extra files
-for file in ~/.{exports,bitly,aliases,functions}; do
+for file in ~/.{exports,aliases,functions,bitly}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
