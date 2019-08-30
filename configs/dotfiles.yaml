@@ -22,4 +22,5 @@
     ~/.aliases: aliases
     ~/.tmux.conf: tmux.conf
     ~/.bitly: bitly
+    ~/.iterm: iterm
 

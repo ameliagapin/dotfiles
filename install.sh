@@ -99,10 +99,19 @@ if [[ "$OSTYPE" =~ ^darwin ]] ; then
       sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $COMPUTER_NAME
     fi
 
-    pecho "Would you like to set macOS prefs [y/N] "
+    pecho "Would you like to set macOS prefs? [y/N] "
     read -r response ; tput sgr0
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]] ; then
         source macos
+    fi
+
+    pecho "Would you like to set iTerm2 prefs? [y/N] "
+    read -r response ; tput sgr0
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]] ; then
+        # Specify the preferences directory
+        defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.iterm"
+        # Tell iTerm2 to use the custom preferences in the directory
+        defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
     fi
 fi
 
