@@ -14,5 +14,5 @@ node_modules
 ######################
 # VIM                #
 ######################
-vim/plugged
-vim/undo
+dotfiles/vim/plugged
+dotfiles/vim/undo

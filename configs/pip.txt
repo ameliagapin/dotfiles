@@ -9,7 +9,7 @@ elasticsearch
 futures
 Glances
 influxdb
-ipaddress==1.0.22
+ipaddress
 kafka-python
 kiwisolver
 matplotlib

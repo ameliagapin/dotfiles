@@ -102,7 +102,7 @@ if [[ "$OSTYPE" =~ ^darwin ]] ; then
     pecho "Would you like to set macOS prefs? [y/N] "
     read -r response ; tput sgr0
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]] ; then
-        source macos
+        source configs/macos
     fi
 
     pecho "Would you like to set iTerm2 prefs? [y/N] "

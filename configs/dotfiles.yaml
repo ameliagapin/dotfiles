@@ -7,20 +7,20 @@
 - clean: ['~']
 
 - link:
-    ~/.bash_profile: bash_profile
-    ~/.bash_prompt: bash_prompt
-    ~/.bashrc: bashrc
-    ~/.gitconfig: gitconfig
+    ~/.bash_profile: dotfiles/bash_profile
+    ~/.bash_prompt: dotfiles/bash_prompt
+    ~/.bashrc: dotfiles/bashrc
+    ~/.gitconfig: dotfiles/gitconfig
     ~/.ssh/config:
-        path: ssh/config
+        path: dotfiles/ssh/config
         create: true
-    ~/.vim: vim
-    ~/.vimrc: vimrc
-    ~/.zshrc: zshrc
-    ~/.functions: functions
-    ~/.exports: exports
-    ~/.aliases: aliases
-    ~/.tmux.conf: tmux.conf
-    ~/.bitly: bitly
-    ~/.iterm: iterm
+    ~/.vim: dotfiles/vim
+    ~/.vimrc: dotfiles/vimrc
+    ~/.zshrc: dotfiles/zshrc
+    ~/.functions: dotfiles/functions
+    ~/.exports: dotfiles/exports
+    ~/.aliases: dotfiles/aliases
+    ~/.tmux.conf: dotfiles/tmux.conf
+    ~/.bitly: dotfiles/bitly
+    ~/.iterm: dotfiles/iterm
 
