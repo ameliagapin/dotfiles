@@ -1,12 +1,13 @@
-#!/usr/bin/env sh
-
 ###############################################################################
 # Bitly                                                                       #
 ###############################################################################
 
 export PATH=$PATH:/usr/local/bin:/bitly/local/go/bin:/bitly/local/bin
-export GOBIN=/bitly/local/go/bin:/bitly:$GOBIN
-export GOPATH=/bitly/local/go/site-packages/go1.11rc1:$GOPATH
+
+bitgo=/etc/profile.d/go.sh
+if [ -f "$bitgo" ]; then
+    source $bitgo
+fi
 
 alias dev="cd ~/Projects/bitly"
 alias bitly="cd /bitly/src/github.com/bitly/bitly"
