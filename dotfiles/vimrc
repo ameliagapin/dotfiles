@@ -22,8 +22,8 @@ Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jszakmeister/vim-togglecursor'
-Plug 'w0rp/ale'
-Plug 'godlygeek/csapprox'
+" Plug 'w0rp/ale'
+" Plug 'godlygeek/csapprox'
 Plug 'rking/ag.vim'
 Plug 'powerline/powerline-fonts'
 Plug 'luochen1990/rainbow'
@@ -136,6 +136,10 @@ set hlsearch
 " Ignore case of searches
 set ignorecase
 
+" Override `ignorecase` option  if the search pattern contains
+" uppercase characters.
+set smartcase
+
 " Highlight dynamically as pattern is typed
 set incsearch
 
@@ -181,24 +185,11 @@ set title
 " Show the (partial) command as it’s being typed
 set showcmd
 
-" Use relative line numbers
-" if exists("&relativenumber")
-"     set relativenumber
-"     au BufReadPost * set relativenumber
-" endif
-
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
 " Set the spellchecking language.
 set spelllang=en_us
-
-" Override `ignorecase` option  if the search pattern contains
-" uppercase characters.
-set smartcase
-
-" Allow cursor to be anywhere.
-" set virtualedit=all
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
@@ -232,10 +223,6 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checkti
 autocmd FileChangedShellPost *
    \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl Nonei
 
-
-" Better comment color
-" highlight Comment ctermfg=Gray
-
 " Better search and selection highlighting
 hi Search cterm=NONE ctermfg=black ctermbg=yellow
 hi Visual cterm=NONE ctermfg=black ctermbg=yellow
@@ -260,7 +247,7 @@ noremap <C-k> :bprevious<cr>
 " | Use The Silver Searcher                                            |
 " ----------------------------------------------------------------------
 " command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-nnoremap \ :Ag -C <SPACE>
+nnoremap \ :Ag -C<SPACE>
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " ----------------------------------------------------------------------
@@ -358,11 +345,6 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 " let g:airline_theme='afterglow'
 
 "
-" VIM-Minimap
-"
-let g:minimap_highlight='Statement'
-
-"
 " Rainbow Parentheses
 "
 let g:rainbow_active = 1
@@ -432,3 +414,8 @@ let g:go_highlight_extra_types = 1
 "
 let g:ycm_autoclose_preview_window_after_completion = 1
 "let g:ycm_min_num_of_chars_for_completion = 1
+
+" Override error highlighing color
+" Something above is setting ctermfg=white which is unreadable
+" This fixes it, but I should probably figure out what is setting it:w
+highlight SpellBad ctermbg=red ctermfg=black
