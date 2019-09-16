@@ -123,4 +123,4 @@ unset file;
 fpath=($fpath "/root/.zfunctions")
 
 # Fire off neofetch
-neofetch
+# neofetch

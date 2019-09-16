@@ -23,4 +23,5 @@
     ~/.tmux.conf: dotfiles/tmux.conf
     ~/.bitly: dotfiles/bitly
     ~/.iterm: dotfiles/iterm
+    ~/.tmuxp: dotfiles/tmuxp
 

@@ -14,6 +14,8 @@
 	<integer>1</integer>
 	<key>AppleWindowTabbingMode</key>
 	<string>manual</string>
+	<key>AutoHideTmuxClientSession</key>
+	<true/>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>Afterglow</key>
@@ -295,7 +297,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>413 422 796 486 0 0 3440 1440 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 1040 570 377 0 0 3440 1417 </string>
+	<string>0 644 570 377 0 0 3440 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>215 93 570 377 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -2143,7 +2145,10 @@
 	<array>
 		<string>3.2.9</string>
 		<string>3.3.1</string>
+		<string>3.3.3</string>
 	</array>
+	<key>NoSyncAutoBurialReveal</key>
+	<true/>
 	<key>NoSyncBFPRecents</key>
 	<array>
 		<string>Monaco</string>
@@ -2160,9 +2165,9 @@
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{0, 0}, {1680, 1050}}</string>
+		<string>{{0, 0}, {3360, 1890}}</string>
 		<key>topLeft</key>
-		<string>{232, 902}</string>
+		<string>{1237, 1339}</string>
 	</dict>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
@@ -2171,7 +2176,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>E0DCD7AD-29E0-4BB6-8070-2BB2ADEEB6FD</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>2</integer>
+	<integer>4</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2708,6 +2713,14 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
+				<string>number</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
 				<string>currentTab.currentSession.jobName</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
@@ -2952,6 +2965,12 @@
 			</dict>
 		</array>
 	</dict>
+	<key>NoSyncSearchHistory</key>
+	<array>
+		<string>/NRD</string>
+		<string>ipad</string>
+		<string>pixel</string>
+	</array>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>546901847.98456895</real>
 	<key>OpenTmuxWindowsIn</key>
@@ -3004,8 +3023,10 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-08-27T21:02:20Z</date>
+	<date>2019-09-12T21:05:36Z</date>
 	<key>SUSendProfileInfo</key>
+	<false/>
+	<key>SUUpdateRelaunchingMarker</key>
 	<false/>
 	<key>SeparateStatusBarsPerPane</key>
 	<true/>
@@ -7692,7 +7713,7 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.3.1</string>
+	<string>3.3.3</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
