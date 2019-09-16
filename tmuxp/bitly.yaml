@@ -1,0 +1,10 @@
+session_name: bitly
+windows:
+- window_name: bitly
+  layout: main-vertical
+  shell_command_before:
+    - bitly
+  panes:
+    - vim
+    - git status
+    - pane
