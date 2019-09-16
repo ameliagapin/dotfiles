@@ -19,3 +19,5 @@ packages:
   - git-open
   - internal-ip-cli
   - public-ip-cli
+  - dockly
+  - gtop
