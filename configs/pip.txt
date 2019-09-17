@@ -18,6 +18,7 @@ netifaces
 numpy
 nvidia-ml-py
 pbkdf2
+piexif
 pika
 ply
 potsdb
