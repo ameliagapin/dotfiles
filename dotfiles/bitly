@@ -2,7 +2,7 @@
 # Bitly                                                                       #
 ###############################################################################
 
-export PATH=$PATH:/usr/local/bin:/bitly/local/go/bin:/bitly/local/bin
+export PATH=/bitly/local/bin:/usr/local/bin:/bitly/local/go/bin:$PATH
 
 bitgo=/etc/profile.d/go.sh
 if [ -f "$bitgo" ]; then
