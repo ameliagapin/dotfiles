@@ -42,5 +42,9 @@ for i in ${packages[*]}; do
     sudo yum -y install $i > /dev/null || true
 done
 
+pecho "Installing fzf...\n"
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install || exit 1
+
 pecho "Done!\n"
 exit 0

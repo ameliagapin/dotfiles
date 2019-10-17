@@ -88,6 +88,7 @@ plugins=(
     git
     zsh-syntax-highlighting
     zsh-autosuggestions
+    navi
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -121,6 +122,9 @@ done;
 unset file;
 
 fpath=($fpath "/root/.zfunctions")
+
+# fzf - needed for navi to work
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Fire off neofetch
 # neofetch
