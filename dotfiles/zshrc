@@ -125,6 +125,9 @@ fpath=($fpath "/root/.zfunctions")
 
 # fzf - needed for navi to work
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Define navi cheatsheet locations. Kind of a hack
+export NAVI_PATH="$HOME/.cheatsheets:${_navi_path}/cheats"
+# export NAVI_PATH="$HOME/dotfiles/dotfiles/cheatsheets"
 
 # Fire off neofetch
 # neofetch

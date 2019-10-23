@@ -24,4 +24,5 @@
     ~/.bitly: dotfiles/bitly
     ~/.iterm: dotfiles/iterm
     ~/.tmuxp: dotfiles/tmuxp
+    ~/.cheatsheets: dotfiles/cheatsheets
 
