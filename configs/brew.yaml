@@ -147,8 +147,10 @@ cask:
   - lastpass
   - macdown
   - macvim
+  - monitorcontrol
   - ngrok
   - postman
+  - rectangle
   - rocket
   - skype
   - sublime-text

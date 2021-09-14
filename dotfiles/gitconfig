@@ -72,6 +72,9 @@
 	# a.k.a. ‘delete merged’
 	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
+    # Iterate through all branches and ask if should be deleted
+    dmc = "!f() { git branch | grep -vw "main" | sed -e 's/^[[:space:]]*//' | xargs -p -I {} git branch -D {}; }; f"
+
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
 
