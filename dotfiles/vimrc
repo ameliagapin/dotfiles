@@ -33,6 +33,7 @@ Plug 'tpope/vim-commentary' " Provides easy commenting using gcc and gc
 Plug 'tpope/vim-abolish' " Better substitutions https://github.com/tpope/vim-abolish
 Plug 'godlygeek/tabular' " Align text in columns
 Plug 'junegunn/vim-peekaboo' " Add some neat register stuff
+Plug 'pechorin/any-jump.vim'
 
 " Language support
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-json coc-tsserver coc-sh coc-go coc-html coc-python coc-sql coc-docker coc-phpls '}
@@ -87,6 +88,10 @@ set clipboard=unnamed
 
 " Enhance command-line completion
 set wildmenu
+
+" change the direction of new splits
+set splitbelow
+set splitright
 
 if !has('nvim')
     " Allow cursor keys in insert mode
@@ -261,8 +266,8 @@ set wildignore+=*.DS_Store
 hi Search cterm=NONE ctermfg=black ctermbg=yellow
 hi Visual cterm=NONE ctermfg=black ctermbg=yellow
 
-map <C-L> 20zl " Scroll 20 characters to the right
-map <C-H> 20zh " Scroll 20 characters to the left
+" map <C-L> 20zl " Scroll 20 characters to the right
+" map <C-H> 20zh " Scroll 20 characters to the left
 
 " Map ctrl-movement keys to window switching
 map <C-w> <C-w><C-w>
@@ -274,6 +279,10 @@ noremap <C-k> :bprevious<cr>
 " Navigate quickfix
 noremap <leader>j :cnext<cr>
 noremap <leader>k :cprevious<cr>
+
+" Navigate locationlist
+noremap <C-L> :lnext<cr>
+noremap <C-H> :lprevious<cr>
 
 " Allow switching buffers without saving
 set hidden
@@ -459,6 +468,7 @@ set updatetime=500 " Update status line info every 100ms
 let g:go_auto_type_info = 1 " Automatically show type info in status line for type under cursor
 let g:go_fmt_command = "goimports"
 let g:go_decls_includes = "func,type" " Show funcs and types in declaration list
+let g:go_list_type = "locationlist"
 nmap <leader>gi :GoInfo<CR>  " Show method signature for a Go method in status line
 nmap <leader>gd :GoDoc<CR>  " Show info for a Go method in scratch area
 
@@ -506,3 +516,29 @@ else
 endif
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
+"
+" AnyJump
+"
+" Max search results, other results can be opened via [a]
+let g:any_jump_max_search_results = 100
+let g:any_jump_window_width_ratio  = 0.9
+let g:any_jump_window_height_ratio = 0.9
+let g:any_jump_window_top_offset   = 4
+nnoremap <leader>jl :AnyJumpLastResults<CR>
+"
+"TODO: Figure out how to autoclose the popup when navigating away from results
+
+
+"
+" Hinge
+"
+" Special things just for the hinge backend repo
+function! SetupHingeEnvironment()
+  let l:path = expand('%:p')
+  if l:path =~ '/home/ameliagapin/Projects/backend'
+    " use camelcase for go struct tags
+    let g:go_addtags_transform = "camelcase"
+  endif
+endfunction
+autocmd! BufReadPost,BufNewFile * call SetupHingeEnvironment()

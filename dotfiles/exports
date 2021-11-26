@@ -1,27 +1,21 @@
 # GO
 
-export GOROOT=/usr/local/go
+# Old Go stuff
+# export GOROOT=/usr/local/go
+# export PATH=$PATH:$GOROOT:$HOME/bin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:$HOME/Projects/go/bin:$GOPATH/bin
 
 export GOPATH=$HOME/Projects/go
 
 export GOBIN=$GOPATH/bin
 
 # PATH
-# export PATH=$PATH:$GOROOT:$HOME/bin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:$HOME/Projects/go/bin:$GOPATH/bin
 export PATH=$PATH:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:$HOME/bin:$GOBIN:$GOROOT/bin
 
-# export nvm
+export nvm
 export NVM_DIR="$HOME/.nvm"
 
-# Make vim the default editor.
-export EDITOR='vim';
-
-# Enable persistent REPL history for `node`.
-export NODE_REPL_HISTORY=~/.node_history;
-# Allow 32³ entries; the default is 1000.
-export NODE_REPL_HISTORY_SIZE='32768';
-# Use sloppy mode by default, matching web browsers.
-export NODE_REPL_MODE='sloppy';
+# Make neovim the default editor.
+export EDITOR='nvim';
 
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
