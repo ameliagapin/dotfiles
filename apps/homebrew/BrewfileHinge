@@ -1,0 +1,2 @@
+tap "hinge/brew-tap", "git@github.com:Hinge/brew-tap.git"
+brew "hinge/brew-tap/hinge-dev-tools", link: false

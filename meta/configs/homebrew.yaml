@@ -1,0 +1,13 @@
+- shell:
+  - command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    description: Installing Homebrew
+    quiet: false
+    stdout: true
+    stderr: true
+    stdin: true # if this is false, the install will fail
+- brewfile:
+    file: apps/homebrew/Brewfile
+    no-upgrade: false
+    include: ['tap', 'brew', 'cask', 'mas']
+    stdout: false
+    stderr: true

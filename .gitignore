@@ -14,6 +14,5 @@ node_modules
 ######################
 # VIM                #
 ######################
-dotfiles/vim/plugged
-dotfiles/vim/undo
-dotbot
+apps/nvim/vim/plugged
+apps/nvim/vim/undo

@@ -1,0 +1,2 @@
+﻿license: Demo
+link: https://www.fontspace.com/simplecat-font-f44505
