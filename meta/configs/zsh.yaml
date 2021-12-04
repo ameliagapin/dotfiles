@@ -1,0 +1,15 @@
+- shell:
+  - command: |
+      BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+      ${BASE_DIR}/apps/zsh/install.sh
+    description: Installing Oh My Zsh and plugins
+    quiet: true
+    stdout: false
+    stderr: true 
+
+- link:
+    $HOME/.zshrc: apps/zsh/zshrc
+    $HOME/.functions: apps/zsh/functions
+    $HOME/.exports: apps/zsh/exports
+    $HOME/.aliases: apps/zsh/aliases
+    $HOME/.cheatsheets: apps/navi/cheatsheets

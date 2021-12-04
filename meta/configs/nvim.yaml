@@ -1,0 +1,12 @@
+- link:
+    $HOME/.vimrc: apps/nvim/vimrc
+    $HOME/.config/nvim/init.vim: apps/nvim/init.vim
+    $HOME/.vim/colors: apps/nvim/vim/colors
+- shell:
+  - command: |
+      BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+      ${BASE_DIR}/apps/nvim/install.sh
+    description: Installing and configuring nvim plugins
+    quiet: true
+    stdout: false
+    stdout: true

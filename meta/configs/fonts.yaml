@@ -1,0 +1,8 @@
+- shell:
+  - command: |
+      BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+      rsync -a -v --ignore-existing ${BASE_DIR}/apps/fonts/. ~/Library/Fonts > /dev/null
+    description: Installing fonts
+    quiet: true
+    stdout: false
+    stdout: true
