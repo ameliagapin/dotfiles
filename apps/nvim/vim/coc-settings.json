@@ -1,0 +1,17 @@
+{
+    "suggest.noselect": false,
+    "diagnostic.errorSign": "✘",
+    "diagnostic.warningSign": "!",
+    "diagnostic.infoSign": "?",
+    "diagnostic.level": "error",
+    "diagnostic.checkCurrentLine": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "javascript",
+        "html",
+        "json",
+        "css",
+        "scss",
+        "go"
+    ],
+    "coc.preferences.hoverTarget": "float"
+}

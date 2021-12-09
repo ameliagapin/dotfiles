@@ -13,3 +13,4 @@
     $HOME/.exports: apps/zsh/exports
     $HOME/.aliases: apps/zsh/aliases
     $HOME/.cheatsheets: apps/navi/cheatsheets
+    $HOME/.hinge: apps/zsh/hinge
