@@ -4,36 +4,24 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
-" Plug ins, managed by vim-plug
-function! BuildYCM(info)
-  if a:info.status == 'installed' || a:info.force
-    !/usr/bin/python install.py --all
-  endif
-endfunction
-
 call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'jszakmeister/vim-togglecursor'
 Plug 'powerline/powerline-fonts'
 Plug 'luochen1990/rainbow'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary' " Provides easy commenting using gcc and gc
 Plug 'tpope/vim-abolish' " Better substitutions https://github.com/tpope/vim-abolish
-Plug 'godlygeek/tabular' " Align text in columns
 Plug 'junegunn/vim-peekaboo' " Add some neat register stuff
 Plug 'pechorin/any-jump.vim'
 
 " Language support
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-json coc-tsserver coc-sh coc-go coc-html coc-python coc-sql coc-docker coc-phpls '}
-Plug 'fatih/vim-go', {  'do': ':GoInstallBinaries' }
 Plug 'buoto/gotests-vim'
-Plug 'kevinw/pyflakes-vim', { 'for': 'python' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'pangloss/vim-javascript'
 Plug 'peitalin/vim-jsx-typescript'
@@ -44,7 +32,6 @@ Plug 'ameliagapin/palenight.vim'
 
 call plug#end()
 
-
 " Wait less between keypresses for combined mappings
 set timeoutlen=500
 
@@ -54,25 +41,31 @@ set nowrap
 " Set noshowmode to hide --INSERT-- from status line
 set noshowmode
 
-" For pyflakes
 filetype on            " enables filetype detection
 filetype plugin on     " enables filetype specific plugins
 
 " Colorz
 set t_Co=256
 
-if (has("nvim"))
-"  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-
 if (has("termguicolors"))
   set termguicolors
 endif
+
 set background=dark
 let g:lightline = { 'colorscheme': 'palenight' }
 let g:airline_theme = "palenight"
 colorscheme palenight
+"
+"" Highlighting for go 
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
 
 " Make Vim more useful
 set nocompatible
@@ -87,10 +80,7 @@ set wildmenu
 set splitbelow
 set splitright
 
-if !has('nvim')
-    " Allow cursor keys in insert mode
-    set esckeys
-
+if has('nvim')
     " Highlight yanked text
     augroup LuaHighlight
       autocmd!
@@ -99,7 +89,7 @@ if !has('nvim')
 
     " Live substitution
     " not available until neovim v0.5
-    " set inccommand=split
+    set inccommand=split
 endif
 
 " Allow backspace in insert mode
@@ -118,13 +108,15 @@ set encoding=utf-8 nobomb
 set history=5000
 
 " Change mapleader
-let mapleader=","
+let mapleader=" "
 
-" Fuck .swps
+" No swap
 set nobackup
 set noswapfile
+
+" Maintain undo history between sessions
 if exists("&undodir")
-    set undofile " Maintain undo history between sessions
+    set undofile
     set undodir=~/.vim/undo
 endif
 set undolevels=1000
@@ -147,9 +139,6 @@ set secure
 " Enable line numbers
 set number
 
-" Enable syntax highlighting
-syntax on
-
 " Highlight current line
 set cursorline
 
@@ -168,7 +157,7 @@ set shiftwidth=4  " Number of spaces when indenting
 set softtabstop=4 " Don't think I need this in combo with the other options
 set shiftround
 " Some filetypes only get two spaces
-autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab 
+autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd Filetype html setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd Filetype css setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd Filetype scss setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
@@ -239,8 +228,6 @@ set scrolloff=3
 if has("autocmd")
     " Strip whitespace on write for certain files
     autocmd BufWritePre *.php,*.js,*.scss,*.css,*.tpl,*.html,*.go :%s/\s\+$//e
-    " Enable file type detection
-    filetype plugin indent on
     " Treat .json files as .js
     autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
     " Treat .md files as Markdown
@@ -259,9 +246,6 @@ set wildignore+=*.DS_Store
 " Better search and selection highlighting
 hi Search cterm=NONE ctermfg=black ctermbg=yellow
 hi Visual cterm=NONE ctermfg=black ctermbg=yellow
-
-" map <C-L> 20zl " Scroll 20 characters to the right
-" map <C-H> 20zh " Scroll 20 characters to the left
 
 " Map ctrl-movement keys to window switching
 map <C-w> <C-w><C-w>
@@ -341,41 +325,6 @@ noremap <leader>W :w !sudo tee % > /dev/null<CR>
 " :Bonly to close all buffers except current
 com! Bonly :%bd|e#
 
-" ----------------------------------------------------------------------
-" | Status Line                                                        |
-" ----------------------------------------------------------------------
-
-" Terminal types:
-"
-"   1) term  (normal terminals, e.g.: vt100, xterm)
-"   2) cterm (color terminals, e.g.: MS-DOS console, color-xterm)
-"   3) gui   (GUIs)
-
-" highlight ColorColumn
-"     \ term=NONE
-"     \ cterm=NONE  ctermbg=237    ctermfg=NONE
-"     \ gui=NONE    guibg=#073642  guifg=NONE
-
-" highlight CursorLine
-"     \ term=NONE
-"     \ cterm=NONE  ctermbg=235  ctermfg=NONE
-"     \ gui=NONE    guibg=#073642  guifg=NONE
-
-" highlight CursorLineNr
-"     \ term=bold
-"     \ cterm=bold  ctermbg=NONE   ctermfg=178
-"     \ gui=bold    guibg=#073642  guifg=Orange
-
-" highlight LineNr
-"     \ term=NONE
-"     \ cterm=NONE  ctermfg=241    ctermbg=NONE
-"     \ gui=NONE    guifg=#839497  guibg=#073642
-
-" highlight User1
-"     \ term=NONE
-"     \ cterm=NONE  ctermbg=237    ctermfg=Grey
-"     \ gui=NONE    guibg=#073642  guifg=#839496
-
 
 " ----------------------------------------------------------------------
 " | Plugins                                                             |
@@ -388,17 +337,13 @@ nmap <C-n> :NERDTreeToggle<CR>  " Map toggle to crtl-n
 nmap <S-n> :NERDTreeFind<CR>   " Map show current file to ctrl-m
 let NERDTreeShowHidden=1       " Show hidden files
 let NERDTreeQuitOnOpen=1      " Close after opening file
-" Better color for directories
-autocmd VimEnter,ColorScheme * :hi Directory guifg=#FF0000 ctermfg=red
-autocmd StdinReadPre * let s:std_in=1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:NERDTreeGitStatusConcealBrackets = 1
+" Better color for directories
+autocmd VimEnter,ColorScheme * :hi Directory guifg=#FF0000 ctermfg=red
+autocmd StdinReadPre * let s:std_in=1
 nmap <Enter> <Esc> " For some reason in neovim, <Enter> opens NERDTree in normal mode and I hate this
-" Open NerdTree on vim start
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" autocmd VimEnter * wincmd p    " Have cursor start in file window
-"
 
 "
 " Airline
@@ -411,17 +356,6 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 " Rainbow Parentheses
 "
 let g:rainbow_active = 1
-
-"
-" Indent Guides
-"
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=233 " #121212
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=233
 
 
 "
@@ -459,38 +393,13 @@ highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
 "
-" vimgo
-"
-let g:go_auto_sameids = 1 " Auto higlight all references to symbol under the cursor
-set updatetime=500 " Update status line info every 100ms
-let g:go_auto_type_info = 1 " Automatically show type info in status line for type under cursor
-let g:go_fmt_command = "goimports"
-let g:go_decls_includes = "func,type" " Show funcs and types in declaration list
-let g:go_list_type = "locationlist"
-nmap <leader>gi :GoInfo<CR>  " Show method signature for a Go method in status line
-nmap <leader>gd :GoDoc<CR>  " Show info for a Go method in scratch area
-
-" Highlighting - This may slow vim down
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-
-nmap <leader>gt :GoAddTags<CR>  " Generate go stuct tags
-nmap <leader>gr :GoRename<CR>   " Rename go variable
-
-"
 " CoC
+" https://github.com/neoclide/coc.nvim
+" https://github.com/neoclide/coc.nvim/blob/master/data/schema.json
 "
 " Give more space for displaying messages.
 set cmdheight=2
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
 set updatetime=300
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -511,9 +420,34 @@ if has('nvim')
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Show symbol definion in floating window
+nnoremap <silent> sd :call CocActionAsync('doHover')<cr>
+" Rename symbol
+nmap <leader>rn <Plug>(coc-rename)
+
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+" Keep signature help displayed while editing
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+
+" organize/add import on save buffer for go
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 "
 " AnyJump
 "
@@ -526,7 +460,6 @@ nnoremap <leader>jl :AnyJumpLastResults<CR>
 "
 "TODO: Figure out how to autoclose the popup when navigating away from results
 
-
 "
 " Hinge
 "
@@ -538,4 +471,4 @@ function! SetupHingeEnvironment()
     let g:go_addtags_transform = "camelcase"
   endif
 endfunction
-autocmd! BufReadPost,BufNewFile * call SetupHingeEnvironment()
+
