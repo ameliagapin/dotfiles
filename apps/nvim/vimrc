@@ -20,7 +20,7 @@ Plug 'junegunn/vim-peekaboo' " Add some neat register stuff
 Plug 'pechorin/any-jump.vim'
 
 " Language support
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-json coc-tsserver coc-sh coc-go coc-html coc-python coc-sql coc-docker coc-phpls '}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-json coc-tsserver coc-sh coc-html coc-python coc-sql coc-docker coc-phpls '}
 Plug 'buoto/gotests-vim'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'pangloss/vim-javascript'
@@ -334,7 +334,7 @@ com! Bonly :%bd|e#
 " NERDTree
 "
 nmap <C-n> :NERDTreeToggle<CR>  " Map toggle to crtl-n
-nmap <S-n> :NERDTreeFind<CR>   " Map show current file to ctrl-m
+nmap <C-f> :NERDTreeFind<CR>   " Map show current file to ctrl-f
 let NERDTreeShowHidden=1       " Show hidden files
 let NERDTreeQuitOnOpen=1      " Close after opening file
 let NERDTreeMinimalUI = 1
@@ -448,6 +448,7 @@ autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
 " organize/add import on save buffer for go
 autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+
 "
 " AnyJump
 "
