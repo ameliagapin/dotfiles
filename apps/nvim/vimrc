@@ -30,6 +30,10 @@ Plug 'ap/vim-css-color', { 'for': 'css' }
 " Theme
 Plug 'ameliagapin/palenight.vim'
 
+" Evaluating
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'romgrk/nvim-treesitter-context'
+
 call plug#end()
 
 " Wait less between keypresses for combined mappings
