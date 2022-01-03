@@ -27,6 +27,7 @@ brew "ctop"
 brew "docker", link: false
 brew "docker-machine"
 brew "dust"
+brew "ddcctl"
 brew "findutils"
 brew "fpp"
 brew "node", link: false
