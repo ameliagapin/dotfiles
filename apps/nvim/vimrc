@@ -58,6 +58,7 @@ set background=dark
 let g:lightline = { 'colorscheme': 'palenight' }
 let g:airline_theme = "palenight"
 colorscheme palenight
+
 "
 "" Highlighting for go 
 let g:go_highlight_types = 1
@@ -253,6 +254,9 @@ hi Visual cterm=NONE ctermfg=black ctermbg=yellow
 " Map ctrl-movement keys to window switching
 map <C-w> <C-w><C-w>
 
+" Space-space to toggle between last two buffers
+" nnoremap <leader><leader> <c-^>
+
 " Switch to alternate buffer
 noremap <C-j> :bnext<cr>
 noremap <C-k> :bprevious<cr>
@@ -440,6 +444,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> cr :CocRestart<CR>
 " Show symbol definion in floating window
 nnoremap <silent> sd :call CocActionAsync('doHover')<cr>
 " Rename symbol
