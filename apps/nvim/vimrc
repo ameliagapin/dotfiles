@@ -26,6 +26,7 @@ Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'pangloss/vim-javascript'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'ap/vim-css-color', { 'for': 'css' }
+Plug 'ruanyl/vim-gh-line' " Open file in github - https://github.com/ruanyl/vim-gh-line
 
 " Theme
 Plug 'ameliagapin/palenight.vim'
@@ -269,6 +270,10 @@ noremap <leader>k :cprevious<cr>
 noremap <C-L> :lnext<cr>
 noremap <C-H> :lprevious<cr>
 
+" Next / Prev go fun
+nnoremap ]] :call search("^func")<cr>
+nnoremap [[ :call search("^func", "b")<cr>
+
 " Allow switching buffers without saving
 set hidden
 
@@ -293,6 +298,7 @@ function! Writer()
     setlocal tabstop=5
     setlocal expandtab
     setlocal wrap
+    setlocal linebreak
     " Move by display line instead of physical line when lines are wrapped
     noremap <buffer> j gj
     noremap <buffer> k gk
