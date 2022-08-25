@@ -30,6 +30,7 @@ SPACESHIP_PROMPT_ORDER=(
     host
     dir
     kubectl
+    aws
     git
     exit_code
     line_sep
@@ -61,6 +62,9 @@ SPACESHIP_KUBECTL_SHOW="true"
 SPACESHIP_KUBECTL_SYMBOL=""
 SPACESHIP_KUBECTL_VERSION_SHOW="false"
 SPACESHIP_KUBECTL_SUFFIX=""
+SPACESHIP_AWS_PREFIX="("
+SPACESHIP_AWS_SUFFIX=") "
+SPACESHIP_AWS_SYMBOL=""
 
 # Spaceship colors
 # https://jonasjacek.github.io/colors/
@@ -70,6 +74,7 @@ SPACESHIP_HOST_COLOR="3"
 SPACESHIP_DIR_COLOR="5"
 SPACESHIP_GIT_BRANCH_COLOR="4"
 SPACESHIP_KUBECONTEXT_COLOR="6"
+SPACESHIP_AWS_COLOR="180"
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS=true
@@ -101,7 +106,6 @@ plugins=(
     zsh-autosuggestions
     # navi
     docker
-    gcloud
     macos
     fzf
 )
@@ -124,7 +128,7 @@ export EDITOR='nvim'
 #
 # Example aliases
 #alias ohmyzsh="mate ~/.oh-my-zsh"
-alias zshconfig="vim ~/.zshrc"
+alias zshconfig="nvim ~/.zshrc"
 
 # Source extra files
 for file in ~/.{exports,aliases,functions,hinge}; do
