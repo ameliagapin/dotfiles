@@ -33,17 +33,16 @@ if [[ ! -d ~/.oh-my-zsh ]]; then
     # Install oh-my-zsh
     pecho "Installing oh-my-zsh...\n"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+else
+    pecho "Skipping oh-my-zsh (already installed)...\n"
 fi
 
 # Install spaceship
 pecho "Installing spaceship...\n"
-clone https://github.com/denysdovhan/spaceship-prompt.git "$CUSTOM/themes/spaceship-prompt"
+clone https://github.com/spaceship-prompt/spaceship-prompt.git "$CUSTOM/themes/spaceship-prompt"
 
 pecho "Sym linking spaceship...\n"
 ln -sf "$CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$CUSTOM/themes/spaceship.zsh-theme" || exit 1
-
-# pecho "Installing spaceship from npm...\n"
-# npm install -g spaceship-prompt # || exit 1
 
 pecho "Installing plugins...\n"
 
@@ -53,14 +52,11 @@ clone https://github.com/zsh-users/zsh-autosuggestions ${OMZ}/plugins/zsh-autosu
 pecho "Installing zsh-syntax-highlighting...\n"
 clone https://github.com/zsh-users/zsh-syntax-highlighting ${OMZ}/plugins/zsh-syntax-highlighting
 
-pecho "Installing navi...\n"
-clone https://github.com/denisidoro/navi ${OMZ}/plugins/navi
-
 # make default
 pecho "Setting zsh as default...\n"
 
 # ensure shell is in /etc/shells
-sh -c "echo $(which zsh) >> /etc/shells"
+sudo sh -c "echo $(which zsh) >> /etc/shells"
 chsh -s $(which zsh) || exit 1
 
 exit 0

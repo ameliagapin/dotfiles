@@ -6,7 +6,7 @@ This script should bootstrap MacOS and Linux distros using apt or yum.
 
 ## Info
 
-Created using [init-dotfiles](https://github.com/Vaelatern/init-dotfile) and using [dotbot](https://github.com/anishathalye/dotbot), with much inspiration from [jakedex/dotfiles](https://github.com/jakedex/dotfiles)
+Created using [init-dotfiles](https://github.com/Vaelatern/init-dotfiles) and using [dotbot](https://github.com/anishathalye/dotbot), with much inspiration from [jakedex/dotfiles](https://github.com/jakedex/dotfiles)
 
 ## Usage
 
