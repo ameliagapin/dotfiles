@@ -1,7 +1,7 @@
 - link:
     $HOME/.vimrc: apps/nvim/vimrc
     $HOME/.config/nvim/init.vim: apps/nvim/init.vim
-    $HOME/.config/nvim/lua: apps/nvim/lua
+      #    $HOME/.config/nvim/lua: apps/nvim/lua
     $HOME/.config/nvim/coc-settings.json: apps/nvim/vim/coc-settings.json
     $HOME/.vim/colors: apps/nvim/vim/colors
 - shell:
