@@ -1,0 +1,8 @@
+- shell:
+  - command: |
+      BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+      ${BASE_DIR}/apps/xcode/install.sh
+    description: Doing Xcode stuff
+    quiet: false
+    stdout: false
+    stderr: true 

@@ -1,9 +1,10 @@
+xcode
 git
 homebrew
-zsh-sudo
+ssh
+zsh
+nvim
 iterm
 pip
-nvim
 tmux
-ssh
 fonts

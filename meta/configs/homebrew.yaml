@@ -1,9 +1,11 @@
 - shell:
-  - command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  - command: |
+      BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+      ${BASE_DIR}/apps/homebrew/install.sh
     description: Installing Homebrew
-    quiet: false
-    stdout: true
-    stderr: true
+    quiet: true
+    stdout: false
+    stderr: true 
     stdin: true # if this is false, the install will fail
 - brewfile:
     file: apps/homebrew/Brewfile
