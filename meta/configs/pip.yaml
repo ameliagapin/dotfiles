@@ -1,6 +1,6 @@
 - pip:
     file: apps/pip/requirements.txt
-    binary: /usr/local/bin/pip3
+    binary: /usr/bin/pip3
     user: true    # Like --user
     stdout: false # Print the execution stdout
     stderr: true  # Print the execution stderr
