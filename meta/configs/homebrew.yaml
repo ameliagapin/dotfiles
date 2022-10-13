@@ -3,13 +3,13 @@
       BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
       ${BASE_DIR}/apps/homebrew/install.sh
     description: Installing Homebrew
-    quiet: true
-    stdout: false
+    quiet: false
+    stdout: true
     stderr: true 
     stdin: true # if this is false, the install will fail
 - brewfile:
     file: apps/homebrew/Brewfile
     no-upgrade: false
     include: ['tap', 'brew', 'cask', 'mas']
-    stdout: false
+    stdout: true
     stderr: true
