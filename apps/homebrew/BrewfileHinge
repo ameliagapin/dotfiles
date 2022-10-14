@@ -3,4 +3,4 @@ brew "tgenv"
 brew "pre-commit"
 brew "opalsecurity/brew/opal-security"
 tap "hinge/brew-tap", "git@github.com:Hinge/brew-tap.git"
-brew "hinge/brew-tap/hinge-dev-tools", link: false
+brew "hinge-all"
