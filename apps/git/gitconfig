@@ -2,8 +2,8 @@
 # User                                                                        #
 ###############################################################################
 [user]
-	email = amelia@entirelyamelia.com
-	name = amelia gapin
+	email = mail@entirelyamelia.com
+	name = Amelia Gapin
 
 [github]
     user = ameliagapin
@@ -16,7 +16,7 @@
 [alias]
     save = "!git add -A && git commit --no-verify -m 'SAVEPOINT'"
     wip = "!git add -u && git commit -m 'WIP'"
-    undo = "reset HEAD~1 --mixed"
+    undo = "reset HEAD~1 --mixed && git reset ."
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = "log --pretty=oneline -n 20 --graph --abbrev-commit"
