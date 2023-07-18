@@ -3,7 +3,7 @@
     "diagnostic.errorSign": "✘",
     "diagnostic.warningSign": "!",
     "diagnostic.infoSign": "?",
-    "diagnostic.level": "error",
+    "diagnostic.level": "information",
     "diagnostic.checkCurrentLine": true,
     "coc.preferences.formatOnSaveFiletypes": [
         "javascript",
@@ -26,7 +26,8 @@
                 "go"
             ],
             "initializationOptions": {
-                "usePlaceholders": false
+                "usePlaceholders": false,
+                "staticcheck": true,
             },
             "args": []
         }

@@ -18,21 +18,51 @@ Plug 'tpope/vim-commentary' " Provides easy commenting using gcc and gc
 Plug 'tpope/vim-abolish' " Better substitutions https://github.com/tpope/vim-abolish
 Plug 'junegunn/vim-peekaboo' " Add some neat register stuff
 Plug 'pechorin/any-jump.vim'
+Plug 'ruanyl/vim-gh-line' " Open file in github - https://github.com/ruanyl/vim-gh-line
+Plug 'wellle/context.vim'
 
 " Language support
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-json coc-tsserver coc-sh coc-html coc-python coc-sql coc-docker coc-phpls '}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-json coc-tsserver coc-sh coc-html coc-python coc-sql coc-docker coc-phpls coc-protobuf'}
 Plug 'buoto/gotests-vim'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'pangloss/vim-javascript'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'ap/vim-css-color', { 'for': 'css' }
-Plug 'ruanyl/vim-gh-line' " Open file in github - https://github.com/ruanyl/vim-gh-line
 
 " Theme
 Plug 'ameliagapin/palenight.vim'
 
+command! CSV set nowrap | %s/,/,|/g | %!column -n -t -s "|" 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 " Evaluating
-" Plug 'wellle/context.vim'
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plug 'editorconfig/editorconfig-vim'
+Plug 'github/copilot.vim'
+inoremap <silent><script><expr> <C-Space> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+
+"" Plug 'brooth/far.vim'
+"" Plug 'sebdah/vim-delve' " Go debugging support
+"" let g:delve_backend = "native"
+
+" Plug 'thiagoalessio/rainbow_levels.vim'
+" " Creating a mapping to turn it on and off:
+" map <leader>l :RainbowLevelsToggle<cr>
+" hi! link RainbowLevel0 Constant
+" hi! link RainbowLevel1 Type
+" hi! link RainbowLevel2 Function
+" hi! link RainbowLevel3 String
+" hi! link RainbowLevel4 PreProc
+" hi! link RainbowLevel5 Statement
+" hi! link RainbowLevel6 Identifier
+" hi! link RainbowLevel7 Normal
+" hi! link RainbowLevel8 Comment
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 call plug#end()
 
@@ -237,6 +267,8 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
     " Treat .md files as Markdown
     autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+    " Treat .go.tmpl files as .go
+    autocmd BufNewFile,BufRead *.go.tmpl set syntax=go
     " Autoreload files changed outside of buffer
     autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
     " Notification after file change
@@ -253,7 +285,7 @@ hi Search cterm=NONE ctermfg=black ctermbg=yellow
 hi Visual cterm=NONE ctermfg=black ctermbg=yellow
 
 " Map ctrl-movement keys to window switching
-map <C-w> <C-w><C-w>
+noremap <C-w> <C-w><C-w>
 
 " Space-space to toggle between last two buffers
 " nnoremap <leader><leader> <c-^>
@@ -417,24 +449,28 @@ set cmdheight=2
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
 set updatetime=300
 " Use tab for trigger completion with characters ahead and navigate.
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-function! s:check_back_space() abort
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 " " Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
+" if has('nvim')
+"   inoremap <silent><expr> <c-space> coc#refresh()
+" else
+"   inoremap <silent><expr> <c-@> coc#refresh()
+" endif
+inoremap <silent><expr> <S-TAB> coc#refresh()
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
@@ -494,6 +530,6 @@ endfunction
 " https://github.com/wellle/context.vim
 "
 let g:context_presenter = 'nvim-float'
-let g:context_border_char = '\/'
+let g:context_border_char = '-'
 let g:context_highlight_normal = 'PMenu'
 let g:context_nvim_no_redraw = 1
