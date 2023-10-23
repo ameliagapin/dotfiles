@@ -409,9 +409,9 @@ let g:rainbow_active = 1
 " fzf
 "
 " user silver searcher and ignore vendor for because the vendor folder may be not be in gitignore if go.mod is set to vendor files
-let $FZF_DEFAULT_COMMAND='ag --ignore-dir="vendor" -g ""'
+let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore-dir="vendor" -g ""'
 " ignore vendor for silver searcher because the vendor folder may be not be in gitignore if go.mod is set to vendor files
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--ignore-dir="vendor"', fzf#vim#with_preview())
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden --ignore .git --ignore-dir="vendor"', fzf#vim#with_preview())
 " Raw Ag for being able to pass path
 command! -bang -nargs=+ -complete=dir Rag call fzf#vim#ag_raw(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 " bind for searching project
