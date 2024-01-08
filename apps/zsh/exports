@@ -5,7 +5,6 @@ export GOPATH=$HOME/Projects/go
 # export GOBIN=$GOPATH/bin
 
 # PATH
-# export PATH=$PATH:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:$HOME/bin:$GOPATH/bin:/opt/homebrew/bin:/opt/homebrew/opt
 export PATH=$PATH:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:$GOPATH/bin:/opt/homebrew/bin:/opt/homebrew/opt
 
 export nvm
@@ -18,7 +17,7 @@ export EDITOR='nvim';
 export PYTHONIOENCODING='UTF-8';
 
 # Increase Bash history size. Allow 32³ entries; the default is 500.
-export HISTSIZE='100000';
+export HISTSIZE='1000000';
 export HISTFILESIZE="${HISTSIZE}";
 # Omit duplicates and commands that begin with a space from history.
 export HISTCONTROL='ignoreboth';
