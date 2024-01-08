@@ -51,24 +51,6 @@ if [ $? -eq 0 ]; then
 	}
 fi;
 
-# Create a data URL from a file
-function dataurl() {
-	local mimeType=$(file -b --mime-type "$1");
-	if [[ $mimeType == text/* ]]; then
-		mimeType="${mimeType};charset=utf-8";
-	fi
-	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
-}
-
-# UTF-8-encode a string of Unicode symbols
-function escape() {
-	printf "\\\x%s" $(printf "$@" | xxd -p -c1 -u);
-	# print a newline unless we’re piping the output to another program
-	if [ -t 1 ]; then
-		echo ""; # newline
-	fi;
-}
-
 # `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
 # the `.git` directory, listing directories first. The output gets piped into
 # `less` with options to preserve color and line numbers, unless the output is
@@ -77,19 +59,3 @@ function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
-# Attempts to attach to tmux session ${1}. If it cannot, a new tmux session will be launched
-# using tmuxp for profile ${1}
-function txp() {
-    export DISABLE_AUTO_TITLE='true'
-    tmux attach -t ${1} &>2 || tmuxp load -y $HOME/.tmuxp/${1}.yaml
-}
-
-# Kills a named tmux session
-function txk() {
-    tmux kill-session -t ${1}
-}
-
-function gcover () {
-    t="/tmp/go-cover.$$.tmp"
-    go test -coverprofile=$t $@ && go tool cover -html=$t && unlink $t
-}

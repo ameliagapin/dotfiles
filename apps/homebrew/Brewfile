@@ -45,9 +45,7 @@ brew "git-quick-stats"
 brew "gitui"
 brew "glances"
 brew "go"
-brew "gobject-introspection"
 brew "gomplate"
-brew "harfbuzz"
 brew "graphviz"
 brew "protobuf"
 brew "grpc"
@@ -56,12 +54,10 @@ brew "hey"
 brew "highlight"
 brew "htop"
 brew "httpie"
-brew "hugo"
 brew "imagemagick"
 brew "jq"
 brew "jo"
 brew "kaf"
-brew "krakend"
 brew "kubectx"
 brew "lazygit"
 brew "lf"
@@ -71,7 +67,6 @@ brew "lnav"
 brew "luarocks"
 brew "lynx"
 brew "mas"
-brew "minikube"
 brew "mitmproxy"
 brew "mosh"
 brew "mycli", link: false
@@ -105,9 +100,7 @@ brew "zsh-completions"
 brew "browsh-org/browsh/browsh"
 brew "derailed/k9s/k9s"
 brew "go-swagger/go-swagger/go-swagger"
-brew "heroku/brew/heroku"
 brew "jesseduffield/lazydocker/lazydocker"
-brew "mongodb/brew/mongocli"
 brew "muesli/tap/duf"
 brew "qmk/qmk/qmk"
 cask "bloomrpc"
@@ -119,7 +112,6 @@ cask "dropbox"
 cask "firefox"
 cask "github"
 cask "iterm2"
-cask "lastpass"
 cask "monitorcontrol"
 cask "ngrok"
 cask "notunes"
@@ -141,14 +133,11 @@ mas "Adobe Lightroom", id: 1451544217
 mas "Airmail", id: 918858936
 mas "Annotate", id: 918207447
 mas "Bear", id: 1091189122
-mas "HTTPBot", id: 1232603544
 mas "Hush", id: 1544743900
 mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
 mas "Octotree", id: 1457450145
-mas "Okta Extension App", id: 1439967473
 mas "Pages", id: 409201541
 mas "StopTheMadness", id: 1376402589
-mas "Tweetbot", id: 1384080005
 mas "WhatsApp", id: 1147396723
 mas "Xcode", id: 497799835

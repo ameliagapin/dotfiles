@@ -514,18 +514,6 @@ nnoremap <leader>jl :AnyJumpLastResults<CR>
 "TODO: Figure out how to autoclose the popup when navigating away from results
 
 "
-" Hinge
-"
-" Special things just for the hinge backend repo
-function! SetupHingeEnvironment()
-  let l:path = expand('%:p')
-  if l:path =~ '/home/ameliagapin/Projects/backend'
-    " use camelcase for go struct tags
-    let g:go_addtags_transform = "camelcase"
-  endif
-endfunction
-
-"
 " Context.vim
 " https://github.com/wellle/context.vim
 "
