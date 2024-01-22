@@ -1,8 +1,7 @@
 # GO
 
-export GOPATH=$HOME/Projects/go
-
-# export GOBIN=$GOPATH/bin
+# export GOPATH=$HOME/Projects/go:$HOME/go
+export GOPATH=$HOME/go
 
 # PATH
 export PATH=$PATH:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:$GOPATH/bin:/opt/homebrew/bin:/opt/homebrew/opt

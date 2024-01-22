@@ -16,7 +16,7 @@ tap "osx-cross/avr"
 tap "qmk/qmk"
 tap "jkroepke/openlens"
 tap "bufbuild/buf"
-brew tap birdayz/kaf
+tap "birdayz/kaf"
 brew "ack"
 brew "autoconf"
 brew "automake"

@@ -26,10 +26,10 @@ alias typora="open -a Typora"
 alias gp='git pull'
 alias gpr='git pull --rebase'
 alias gc="git checkout"
-alias gcm="git checkout master"
-alias gpm="git pull origin master"
+alias gcm="git checkout main"
+alias gpm="git pull origin main"
 alias gnb="git checkout -b"
-alias grbm="git checkout master && git pull --rebase"
+alias grbm="git checkout main && git pull --rebase"
 
 # docker
 alias dcdangling="docker rmi \$(docker images -f \"dangling=true\" -q)"
