@@ -41,6 +41,7 @@ require("catppuccin").setup({
     term_colors = true,
     integrations = {
         cmp = true,
+        bufferline = true,
         gitsigns = true,
         neotree = true,
         treesitter = true,
@@ -70,17 +71,20 @@ require("catppuccin").setup({
     highlight_overrides = {
         mocha = function(mocha)
             return {
-                Function = { fg = mocha.yellow },
+                Function = { fg = mocha.blue },
                 Property = { fg = mocha.red },
                 Identifier = { fg = mocha.red },
                 ["@property"] = { fg = mocha.red },
                 ["@variable"] = { fg = mocha.text },
+                ["@variable.member"] = { fg = mocha.red },
                 ["@parameter"] = { fg = mocha.text },
                 ["@namespace"] = { fg = mocha.text },
                 ["@function.builtin"] = { fg = mocha.red },
                 ["@constant"] = { fg = mocha.text },
+                ["@module"] = { fg = mocha.text },
                 ["@constant.builtin"] = { fg = mocha.lavender },
                 Type = { fg = mocha.yellow },
+                ["@function.method.call.go"] = { fg = mocha.yellow },
                 -- ["@type"] = { fg = mocha.yellow },
                 ["@type.builtin"] = { fg = mocha.yellow },
                 NeoTreeDirectoryName = { fg = mocha.purple },

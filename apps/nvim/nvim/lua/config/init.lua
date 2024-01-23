@@ -1,6 +1,5 @@
-
 vim.opt.updatetime = 100
-vim.opt.timeoutlen = 250
+vim.opt.timeoutlen = 500
 vim.opt.scrolloff = 3 -- start scrolling 3 lines before top/bottom
 vim.o.mouse = 'a'     -- enable mouse mode
 
@@ -31,9 +30,9 @@ vim.opt.wildignore:append({ '*.DS_Store' })
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+    group = highlight_group,
+    pattern = '*',
 })
