@@ -10,7 +10,4 @@ pecho() {
     echo "$(tput setaf "${PRINT_COLOR}")$1$(tput sgr0)"
 }
 
-pecho "Creating vim undo directory...\n"
-mkdir -p ~/.vim/undo
-
 exit 0

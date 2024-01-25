@@ -3,4 +3,5 @@ return {
     { 'numToStr/Comment.nvim', opts = {},           lazy = false },
     { 'folke/which-key.nvim',  opts = {} },
     { 'norcalli/nvim-colorizer.lua' },
+    { 'sebdah/vim-delve' },
 }

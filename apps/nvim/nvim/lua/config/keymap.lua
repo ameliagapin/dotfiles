@@ -2,6 +2,7 @@ vim.keymap.set('n', '<Esc><Esc>', ':noh<CR><CR>') -- Clear previous search highl
 vim.keymap.set('n', '<C-j>', '<Cmd>bnext<CR>', { silent = true }) -- Next buffer
 vim.keymap.set('n', '<C-k>', '<Cmd>bprevious<CR>', { silent = true }) -- Prev buffer
 vim.keymap.set('n', '00', '^') -- Use 00 to go to the first non-whitespace char on line
+vim.keymap.set('n', '<C-w>', '<C-w><C-w>') -- Ctrl-w to toggle through windows
 
 -- Diagnostics
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
