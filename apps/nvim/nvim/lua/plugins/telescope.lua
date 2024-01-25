@@ -17,6 +17,9 @@ return {
                 end,
             },
         },
+        keys= {
+            { "<C-b>", "<cmd>Telescope buffers<cr>",    desc = "Show buffers in telescope" },
+        },
         config = function()
             local actions = require('telescope.actions')
             require('telescope').setup {
@@ -31,10 +34,9 @@ return {
 
                         },
                     },
+                    file_ignore_patterns = { "/vendor/", "vendor/", "^vendor/" },
                 },
             }
-            --
-            --
             -- Enable telescope fzf native, if installed
             pcall(require('telescope').load_extension, 'fzf')
             local builtin = require('telescope.builtin')

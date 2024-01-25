@@ -28,7 +28,7 @@ return {
                 show_buffer_icons = false, -- disable filetype icons for buffers
                 offsets = {
                     {
-                        filetype = "NeoTree",
+                        filetype = "neo-tree",
                         text = "File Explorer",
                         text_align = "left",
                         separator = true

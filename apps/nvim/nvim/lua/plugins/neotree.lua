@@ -11,7 +11,6 @@ return {
         keys = {
             { "<C-n>", "<cmd>Neotree toggle<cr>",            desc = "NeoTree" },
             { "<C-f>", "<cmd>Neotree filesystem reveal<cr>", desc = "NeoTree" },
-            { "<C-b>", "<cmd>Neotree toggle buffers<cr>",    desc = "NeoTree" },
         },
         config = function(_, opts)
             require("neo-tree").setup {
