@@ -102,8 +102,6 @@ require("catppuccin").setup({
             base = "#1a1a1a",
             mantle = "#181A1F",
             crust = "#2C323C",
-            -- mantle = "#1a1a1a",
-            -- crust = "#1a1a1a",
             green = "#C3E88D",
             red = "#ff5370",
             pink = "#ff869a",
