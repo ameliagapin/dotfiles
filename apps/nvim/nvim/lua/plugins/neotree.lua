@@ -24,6 +24,26 @@ return {
                         nowait = true,
                     },
                 },
+                filesystem = {
+                    window = {
+                        mappings = {
+                            -- open file in system editor
+                            ["o"] = "system_open",
+                            -- use p to go up a level
+                            ["p"] = function(state)
+                                local node = state.tree:get_node()
+                                require 'neo-tree.ui.renderer'.focus_node(state, node:get_parent_id())
+                            end,
+                        },
+                    },
+                    commands = {
+                        system_open = function(state)
+                            local node = state.tree:get_node()
+                            local path = node:get_id()
+                            vim.fn.jobstart({ "open", path }, { detach = true })
+                        end,
+                    },
+                },
                 default_component_configs = {
                     diagnostics = {
                         symbols = {
@@ -38,9 +58,6 @@ return {
                     {
                         event = "file_opened",
                         handler = function(file_path)
-                            -- auto close
-                            -- vimc.cmd("Neotree close")
-                            -- OR
                             require("neo-tree.command").execute({ action = "close" })
                         end
                     },
