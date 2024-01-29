@@ -17,3 +17,5 @@ node_modules
 apps/nvim/vim/plugged
 apps/nvim/vim/undo
 apps/zsh/hinge
+
+apps/zsh/1password

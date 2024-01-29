@@ -4,6 +4,9 @@ vim.keymap.set('n', '<C-k>', '<Cmd>bprevious<CR>', { silent = true }) -- Prev bu
 vim.keymap.set('n', '00', '^') -- Use 00 to go to the first non-whitespace char on line
 vim.keymap.set('n', '<C-w>', '<C-w><C-w>') -- Ctrl-w to toggle through windows
 
+-- Git
+vim.keymap.set('n', '<leader>gb', '<Cmd>Git blame<CR>')
+
 -- Diagnostics
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
