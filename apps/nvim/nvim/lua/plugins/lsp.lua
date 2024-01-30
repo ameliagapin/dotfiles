@@ -86,10 +86,10 @@ return {
                     local opts = { buffer = ev.buf }
                     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
                     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-                    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+                    vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, opts)
                     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
                     vim.keymap.set('n', '<C-i>', vim.lsp.buf.signature_help, opts)
-                    -- vim.keymap.set('i', '<C-i>', vim.lsp.buf.signature_help, opts)
+                    vim.keymap.set('i', '<C-i>', vim.lsp.buf.signature_help, opts)
                     vim.keymap.set('n', '<leader>wl', function()
                         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
                     end, opts)
