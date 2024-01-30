@@ -73,7 +73,7 @@ return {
                             ['[['] = '@function.outer',
                         },
                         goto_previous_end = {
-                            ['[M'] = '@function.outer',
+                            -- ['[M'] = '@function.outer',
                             ['[]'] = '@class.outer',
                         },
                     },
