@@ -6,5 +6,4 @@
       ${BASE_DIR}/apps/nvim/install.sh
     description: Installing and configuring nvim plugins
     quiet: true
-    stdout: false
     stdout: true

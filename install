@@ -20,6 +20,8 @@ cd "${BASE_DIR}"
 git submodule update --init --recursive
 
 for config in ${@}; do
+    echo "Installing ${config}"
+
     # create temporary file
     configFile="$(mktemp)"
     suffix="-sudo"

@@ -17,6 +17,8 @@ return {
                 style_preset = bufferline.style_preset.default, -- or bufferline.style_preset.minimal,
                 show_buffer_close_icons = false,
                 show_close_icon = false,
+                enforce_regular_tabs = false,
+                tab_size = 12,
                 diagnostics = "nvim_lsp",
                 diagnostics_indicator = function(count, level, diagnostics_dict, context)
                     if level:match("error") then

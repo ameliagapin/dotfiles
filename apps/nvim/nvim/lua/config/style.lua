@@ -10,6 +10,7 @@ vim.opt.listchars = {
     space = '·',
     tab = '→ ',
 }
+
 vim.opt.cursorline = true -- highlight current line
 vim.opt.colorcolumn = '80,120'
 
@@ -46,7 +47,7 @@ require("catppuccin").setup({
         neotree = true,
         treesitter = true,
         notify = false,
-        lsp_trouble = false,
+        lsp_trouble = true,
         telescope = true,
         native_lsp = {
             enabled = true,
@@ -57,10 +58,10 @@ require("catppuccin").setup({
                 information = { "italic" },
             },
             underlines = {
-                errors = { "underline" },
-                hints = { "underline" },
-                warnings = { "underline" },
-                information = { "underline" },
+                errors = { "undercurl" },
+                -- hints = { "undercurl" },
+                warnings = { "undercurl" },
+                -- information = { "undercurl" },
             },
             inlay_hints = {
                 background = true,
@@ -94,6 +95,12 @@ require("catppuccin").setup({
                 NeoTreeFileName = { fg = mocha.green },
                 NeoTreeTabActive = { fg = mocha.text, bg = mocha.base },
                 NeoTreeTabInactive = { fg = mocha.surface2, bg = mocha.base },
+
+                DiagnosticUnderlineError = {  style = { "undercurl"} },
+                DiagnosticUnnecessary = {  style = { "undercurl"} },
+
+                Float = { bg = mocha.crust },
+                NormalFloat = { bg = mocha.crust },
             }
         end,
     },
@@ -101,7 +108,9 @@ require("catppuccin").setup({
         mocha = {
             base = "#1a1a1a",
             mantle = "#181A1F",
-            crust = "#2C323C",
+             -- crust = "#2C323C",
+            -- mantle = "#2C323C",
+            crust = '#3E4452',
             green = "#C3E88D",
             red = "#ff5370",
             pink = "#ff869a",

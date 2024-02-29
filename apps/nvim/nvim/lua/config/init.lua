@@ -24,6 +24,10 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.smartindent = true
 
+-- Case-insensitive searching UNLESS \C or capital in search
+vim.o.ignorecase = true
+vim.o.smartcase = true
+
 vim.opt.wildignore:append({ '*.DS_Store' })
 
 -- Highlight on yank
