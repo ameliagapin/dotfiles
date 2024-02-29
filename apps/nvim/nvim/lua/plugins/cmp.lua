@@ -31,7 +31,7 @@ return {
                     end,
                 },
                 completion = {
-                    completeopt = 'menu,menuone,noinsert',
+                    completeopt = 'menuone,noinsert',
                 },
 
                 mapping = cmp.mapping.preset.insert {
@@ -39,7 +39,13 @@ return {
                     ['<C-k>'] = cmp.mapping.select_prev_item(),
                     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-                    ['<C-Space>'] = cmp.mapping.complete {},
+                    ['<C-Space>'] = cmp.mapping.complete {
+                        config = {
+                            sources = {
+                                { name = "cody" },
+                            },
+                        },
+                    },
                     ['<CR>'] = cmp.mapping.confirm {
                         behavior = cmp.ConfirmBehavior.Replace,
                         select = true,

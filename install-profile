@@ -18,7 +18,6 @@ BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "${BASE_DIR}"
 git submodule update --init --recursive
 
-
 while IFS= read -r config; do
     CONFIGS+=" ${config}"
 done < "${META_DIR}/${PROFILES_DIR}/$1"
