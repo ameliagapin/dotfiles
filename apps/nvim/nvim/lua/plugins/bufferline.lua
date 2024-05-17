@@ -1,6 +1,6 @@
 return {
-
-    'akinsho/bufferline.nvim',
+    'Theyashsawarkar/bufferline.nvim',
+    -- 'akinsho/bufferline.nvim',
     after = "catppuccin",
     version = "*",
     dependencies = {
