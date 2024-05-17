@@ -35,6 +35,9 @@ alias grbm="git checkout main && git pull --rebase"
 # docker
 alias dcdangling="docker rmi \$(docker images -f \"dangling=true\" -q)"
 
+# kubernetes
+alias kc="kubectl"
+
 ###############################################################################
 # Other shit                                                                  #
 ###############################################################################
