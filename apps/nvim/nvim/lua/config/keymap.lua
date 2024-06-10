@@ -12,8 +12,8 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev) -- Commented out because this is now default
 -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next) -- Commented out because this is now default
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
-vim.keymap.set('n', '<leader>t', '<Cmd>TroubleToggle document_diagnostics<CR>')
-vim.keymap.set('n', '<leader>tw', '<Cmd>TroubleToggle workspace_diagnostics<CR>')
+vim.keymap.set('n', '<leader>t', '<Cmd>Trouble diagnostics toggle filter.buf=0<CR>')
+vim.keymap.set('n', '<leader>tw', '<Cmd>Trouble diagnostics toggle<CR>')
 
 -- Close all floating windows
 -- except for telescope. Telescope is handled by adding a mapping in telescope.lua

@@ -14,6 +14,11 @@ return {
             -- Additional lua configuration, makes nvim stuff amazing!
             'folke/neodev.nvim',
         },
+        opts = {
+            inlay_hints = {
+                enabled = true,
+            },
+        },
         config = function()
             -- https://github.com/nvim-lua/kickstart.nvim/blob/7af594fd319fbae6b2aaa06337f3df8acbbb7f18/init.lua#L580C1-L629C2
             -- More Servers:
@@ -156,6 +161,10 @@ return {
                     vim.keymap.set('n', '<leader>f', function()
                         vim.lsp.buf.format { async = true }
                     end, opts)
+
+                    vim.keymap.set('n', '<C-i>', function()
+                        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+                    end)
                 end,
             })
 

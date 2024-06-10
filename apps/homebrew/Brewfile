@@ -97,6 +97,7 @@ brew "yq"
 brew "z"
 brew "zsh"
 brew "zsh-completions"
+brew zsh-syntax-highlighting
 brew "browsh-org/browsh/browsh"
 brew "derailed/k9s/k9s"
 brew "go-swagger/go-swagger/go-swagger"

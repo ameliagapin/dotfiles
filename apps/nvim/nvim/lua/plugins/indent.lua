@@ -9,13 +9,13 @@ return {
         config = function()
             -- use TSRainbow colors to match rainbow colors from nvim-ts-rainbow2
             local highlight = {
-                "TSRainbowRed",
-                "TSRainbowYellow",
-                "TSRainbowBlue",
-                "TSRainbowOrange",
-                "TSRainbowGreen",
-                "TSRainbowViolet",
-                "TSRainbowCyan",
+                "RainbowDelimiterRed",
+                "RainbowDelimiterYellow",
+                "RainbowDelimiterBlue",
+                "RainbowDelimiterOrange",
+                "RainbowDelimiterGreen",
+                "RainbowDelimiterViolet",
+                "RainbowDelimiterCyan",
             }
 
             require("ibl").setup {
