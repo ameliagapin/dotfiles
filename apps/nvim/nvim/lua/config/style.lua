@@ -75,6 +75,8 @@ require("catppuccin").setup({
                 Function = { fg = mocha.blue },
                 Property = { fg = mocha.red },
                 Identifier = { fg = mocha.red },
+                ["@comment.todo"] = { bg = mocha.crust },
+                ["@comment.error"] = { bg = mocha.crust },
                 ["@property"] = { fg = mocha.red },
                 ["@variable"] = { fg = mocha.text },
                 ["@variable.member"] = { fg = mocha.red },

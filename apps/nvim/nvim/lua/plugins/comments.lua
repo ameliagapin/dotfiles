@@ -10,7 +10,8 @@ return
                 alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
                 -- signs = false, -- configure signs for some keywords individually
             },
-            TODO = { icon = "", color = "todo" },
+            -- TODO = { icon = "", color = "todo" },
+            TODO = { icon = "", color = "#939ede" },
             HACK = { icon = " ", color = "todo" },
             WARN = { icon = " ", color = "todo", alt = { "WARNING", "XXX" } },
             PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
@@ -23,12 +24,12 @@ return
         },
         highlight = {
             keyword = "wide_fg",
-                after = ""
+            after = ""
         },
-colors = {
-    fix = { "@keyword.function" },
-    todo = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
-  },
+        colors = {
+            fix = { "Property" },
+            todo = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
+        },
 
     }
 }

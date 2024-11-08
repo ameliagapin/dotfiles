@@ -176,4 +176,3 @@ source <(navi widget zsh)
 
 # nvm
 source $(brew --prefix nvm)/nvm.sh
-
