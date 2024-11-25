@@ -74,6 +74,7 @@ return {
                 marksman = {},
                 bashls = {},
                 rust_analyzer = {},
+                golangci_lint_ls = {},
             }
 
             -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
@@ -149,11 +150,8 @@ return {
                     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
                     vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, opts) -- Commented out because this is now default
                     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-                    vim.keymap.set('n', '<C-h>', vim.lsp.buf.signature_help, opts)
                     vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, opts)
-                    vim.keymap.set('n', '<leader>wl', function()
-                        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                    end, opts)
+                    vim.keymap.set('n', '<C-h>', vim.lsp.buf.hover, opts)
                     vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
                     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
                     vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)

@@ -80,6 +80,7 @@ require("catppuccin").setup({
                 ["@property"] = { fg = mocha.red },
                 ["@variable"] = { fg = mocha.text },
                 ["@variable.member"] = { fg = mocha.red },
+                ["@constructor.go"] = { fg = mocha.blue },
                 ["@parameter"] = { fg = mocha.text },
                 ["@namespace"] = { fg = mocha.text },
                 ["@function.builtin"] = { fg = mocha.red },

@@ -6,7 +6,6 @@ return {
     { 'tpope/vim-fugitive' },
     -- Highlight other instances of the word under the cursor
     { 'RRethy/vim-illuminate' },
-    -- { 'f-person/git-blame.nvim'},
     { 'sindrets/diffview.nvim' },
     { 'akinsho/git-conflict.nvim',  version = "*",       config = true },
     {
