@@ -18,7 +18,7 @@ return {
                 use_popups_for_input = true,
                 window = {
                     position = "left",
-                    width = 30,
+                    width = 40,
                     mapping_options = {
                         noremap = true,
                         nowait = true,

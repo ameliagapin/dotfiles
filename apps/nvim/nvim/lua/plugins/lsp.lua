@@ -72,7 +72,9 @@ return {
                 ts_ls = {},
                 pyright = {},
                 marksman = {},
-                bashls = {},
+                bashls = {
+                    filetypes = { 'sh', 'bash' },
+                },
                 rust_analyzer = {},
                 golangci_lint_ls = {},
             }
