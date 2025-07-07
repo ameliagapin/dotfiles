@@ -109,24 +109,6 @@ return {
                 handlers = servers,
             }
 
-            -- mason_lspconfig.setup_handlers {
-            --     function(server_name)
-            --         require('lspconfig')[server_name].setup {
-            --             capabilities = capabilities,
-            --             on_attach = servers[server_name].on_attach,
-            --             settings = servers[server_name],
-            --             filetypes = (servers[server_name] or {}).filetypes,
-            --         }
-            --     end,
-            -- }
-
-
-            local signs = { Error = "✘ ", Warn = "! ", Hint = "", Info = " " }
-            for type, icon in pairs(signs) do
-                local hl = "DiagnosticSign" .. type
-                vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-            end
-
             -- Use LspAttach autocommand to only map the following keys
             -- after the language server attaches to the current buffer
             vim.api.nvim_create_autocmd('LspAttach', {
@@ -146,9 +128,21 @@ return {
                         source = "always",
                     },
                     signs = {
-                        severity = { min = vim.diagnostic.severity.WARN }
+                        severity = { min = vim.diagnostic.severity.WARN },
+                        numhl = {
+                            [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+                            [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+                            [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+                            [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+                        },
+                        text = {
+                            [vim.diagnostic.severity.ERROR] = "✘ ",
+                            [vim.diagnostic.severity.WARN] = "! ",
+                            [vim.diagnostic.severity.INFO] = " ",
+                            [vim.diagnostic.severity.HINT] = "",
+                        },
                     },
-                }),
+                  }),
 
                 callback = function(ev)
                     local client = vim.lsp.get_client_by_id(ev.data.client_id)
