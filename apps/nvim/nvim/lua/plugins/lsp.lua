@@ -24,6 +24,7 @@ return {
             -- More Servers:
             -- https://github.com/williamboman/mason-lspconfig.nvim?tab=readme-ov-file#available-lsp-servers
             local servers = {
+                buf_ls = {},
                 yamlls = {
                     filetypes = { 'yaml', 'yml' },
                     yaml = {
@@ -76,7 +77,23 @@ return {
                     filetypes = { 'sh', 'bash' },
                 },
                 rust_analyzer = {},
-                golangci_lint_ls = {},
+                golangci_lint_ls = {
+                    init_options = (function()
+                        local pipe = io.popen("golangci-lint version|cut -d' ' -f4")
+                        if pipe == nil then
+                            return {}
+                        end
+                        local version = pipe:read("*a")
+                        pipe:close()
+                        local major_version = tonumber(version:match("^v?(%d+)%."))
+                        if major_version and major_version > 1 then
+                            return { command = { "golangci-lint", "run", "--output.json.path", "stdout", "--show-stats=false", "--issues-exit-code=1" } }
+                        else
+                            return { command = { "golangci-lint", "run", "--out-format", "json", "--show-stats=false", "--issues-exit-code=1" } }
+                        end
+                        return {}
+                    end)(),
+                }
             }
 
             -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
@@ -89,18 +106,20 @@ return {
             mason_lspconfig.setup {
                 ensure_installed = vim.tbl_keys(servers),
                 automatic_installation = true,
+                handlers = servers,
             }
 
-            mason_lspconfig.setup_handlers {
-                function(server_name)
-                    require('lspconfig')[server_name].setup {
-                        capabilities = capabilities,
-                        on_attach = servers[server_name].on_attach,
-                        settings = servers[server_name],
-                        filetypes = (servers[server_name] or {}).filetypes,
-                    }
-                end,
-            }
+            -- mason_lspconfig.setup_handlers {
+            --     function(server_name)
+            --         require('lspconfig')[server_name].setup {
+            --             capabilities = capabilities,
+            --             on_attach = servers[server_name].on_attach,
+            --             settings = servers[server_name],
+            --             filetypes = (servers[server_name] or {}).filetypes,
+            --         }
+            --     end,
+            -- }
+
 
             local signs = { Error = "✘ ", Warn = "! ", Hint = "", Info = " " }
             for type, icon in pairs(signs) do

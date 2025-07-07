@@ -38,6 +38,9 @@ alias dcdangling="docker rmi \$(docker images -f \"dangling=true\" -q)"
 # kubernetes
 alias kc="kubectl"
 
+# go
+alias gmod="go mod tidy && go mod vendor && go mod download"
+
 ###############################################################################
 # Other shit                                                                  #
 ###############################################################################

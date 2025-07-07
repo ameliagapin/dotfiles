@@ -150,6 +150,8 @@ plugins=(
     docker
     macos
     fzf
+    mise
+    direnv
 )
 
 
