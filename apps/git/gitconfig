@@ -18,6 +18,9 @@
     wip = "!git add -u && git commit -m 'WIP'"
     undo = "reset HEAD~1 --mixed && git reset ."
 
+    # Checkout a branch interactively using fzf
+    cf = "git checkout $(git branch | fzf | sed "s/^[* ] //")"
+
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = "log --pretty=oneline -n 20 --graph --abbrev-commit"
 

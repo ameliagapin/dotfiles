@@ -59,9 +59,10 @@ require("catppuccin").setup({
             },
             underlines = {
                 errors = { "undercurl" },
-                -- hints = { "undercurl" },
+                hints = { "undercurl" },
                 warnings = { "undercurl" },
-                -- information = { "undercurl" },
+                information = { "undercurl" },
+                info = { "undercurl" },
             },
             inlay_hints = {
                 background = true,
@@ -77,6 +78,7 @@ require("catppuccin").setup({
                 Identifier = { fg = mocha.red },
                 ["@comment.todo"] = { bg = mocha.crust },
                 ["@comment.error"] = { bg = mocha.crust },
+                ["@comment.warning"] = { fg = mocha.yellow, bg = mocha.crust },
                 ["@property"] = { fg = mocha.red },
                 ["@variable"] = { fg = mocha.text },
                 ["@variable.member"] = { fg = mocha.red },

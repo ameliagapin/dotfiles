@@ -20,6 +20,7 @@ require("lazy").setup("plugins", {
 })
 
 require('config.init')
+require('config.lsp')
 require('config.style')
 require('config.keymap')
 require('config.go')

@@ -39,6 +39,9 @@ return {
         -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
     },
 
+    { "mrbjarksen/neo-tree-diagnostics.nvim" },
+
+
     -- Seems to break when I open a file
     -- {
     --     "ray-x/go.nvim",
