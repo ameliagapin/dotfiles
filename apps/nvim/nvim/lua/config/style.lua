@@ -101,11 +101,15 @@ require("catppuccin").setup({
                 NeoTreeTabActive = { fg = mocha.text, bg = mocha.base },
                 NeoTreeTabInactive = { fg = mocha.surface2, bg = mocha.base },
 
-                DiagnosticUnderlineError = {  style = { "undercurl"} },
-                DiagnosticUnnecessary = {  style = { "undercurl"} },
+                DiagnosticUnderlineError = { style = { "undercurl" } },
+                DiagnosticUnnecessary = { style = { "undercurl" } },
 
                 Float = { bg = mocha.crust },
                 NormalFloat = { bg = mocha.crust },
+
+                TelescopeNormal = {
+                    bg = mocha.base,
+                },
             }
         end,
     },
@@ -113,7 +117,7 @@ require("catppuccin").setup({
         mocha = {
             base = "#1a1a1a",
             mantle = "#181A1F",
-             -- crust = "#2C323C",
+            -- crust = "#2C323C",
             -- mantle = "#2C323C",
             crust = '#3E4452',
             green = "#C3E88D",

@@ -24,6 +24,7 @@ alias nv='nvim'
 alias typora="open -a Typora"
 
 # git
+alias lazyg="lazygit"
 alias gp='git pull'
 alias gpr='git pull --rebase'
 alias gc="git checkout"
@@ -33,7 +34,9 @@ alias gnb="git checkout -b"
 alias grbm="git checkout main && git pull --rebase"
 
 # docker
+alias lazyd="lazydocker"
 alias dcdangling="docker rmi \$(docker images -f \"dangling=true\" -q)"
+alias docker-compose='docker compose'
 
 # kubernetes
 alias kc="kubectl"

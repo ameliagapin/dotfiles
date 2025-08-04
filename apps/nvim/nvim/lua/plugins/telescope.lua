@@ -40,7 +40,17 @@ return {
                             ['<esc><esc>'] = actions.close,
                         },
                     },
-                    file_ignore_patterns = { "/vendor/", "vendor/", "^vendor/" },
+                    file_ignore_patterns = {
+                    'node_modules',
+                    '.git',
+                    '.cache',
+                    '.next',
+                    'dist',
+                    'build',
+                    'target',
+                    '__pycache__',
+                    '*.lock',
+                        },
                 },
                 pickers = {
                     grep_string = {

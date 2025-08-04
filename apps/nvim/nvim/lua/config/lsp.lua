@@ -33,15 +33,10 @@ vim.diagnostic.config({
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
     callback = function(event)
-        local map = function(keys, func, desc)
-            vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
-        end
-
-        -- defaults:
-        -- https://neovim.io/doc/user/news-0.11.html#_defaults
+        -- defaults: https://neovim.io/doc/user/news-0.11.html#_defaults
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-        vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, opts) -- Commented out because this is now default
+        -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts) -- Commented out because this is now default
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
         vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, opts)
         vim.keymap.set('n', '<C-h>', vim.lsp.buf.hover, opts)

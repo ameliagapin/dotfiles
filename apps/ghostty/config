@@ -1,0 +1,21 @@
+ ## Font
+# font-family = "FiraCode Nerd Font Mono"
+# font-family = "Monaco"
+font-family = "MonacoB"
+font-size = 11
+window-inherit-font-size = false
+bold-is-bright = false
+
+## Appearance
+
+macos-icon=xray
+
+# Others I like: "Monokai Remastered", "Apple System Colors"
+theme = "Afterglow"
+unfocused-split-opacity = .5
+window-padding-x = 5
+window-padding-y = 5
+window-padding-balance = true
+
+## Behavior
+copy-on-select = false
