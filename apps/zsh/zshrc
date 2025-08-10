@@ -150,13 +150,11 @@ plugins=(
     docker
     macos
     fzf
-    mise
+    # mise
     direnv
 )
 
-
 source $ZSH/oh-my-zsh.sh
-
 
 # Source extra files
 for file in ~/.{exports,aliases,functions,1password}; do
@@ -179,5 +177,3 @@ source <(navi widget zsh)
 
 # nvm
 source $(brew --prefix nvm)/nvm.sh
-
-. "$HOME/.local/bin/env"

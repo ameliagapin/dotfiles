@@ -39,7 +39,9 @@ return {
         },
 
         completion = {
-            documentation = { auto_show = true },
+            documentation = {
+                auto_show = true,
+            },
 
             menu = {
                 auto_show = true, -- Automatically show the menu when typing
@@ -84,14 +86,25 @@ return {
                     auto_insert = false,
                 }
             },
+
+            trigger = {
+                -- by default, blink.cmp will block newline, tab and space trigger characters, disable that behavior
+                -- show_on_blocked_trigger_characters = {}
+
+                -- When true, will prefetch the completion items when entering insert mode
+                prefetch_on_insert = true,
+
+                -- When true, will show the completion window after entering insert mode
+                show_on_insert = true,
+            },
         },
 
         -- Default list of enabled providers defined so that you can extend it
         -- elsewhere in your config, without redefining it, due to `opts_extend`
         sources = {
             default = {
-                'lsp',
                 'copilot',
+                'lsp',
                 'path',
                 'buffer',
             },
@@ -101,7 +114,12 @@ return {
                     module = 'blink-cmp-copilot',
                     score_offset = 100,
                     async = true,
+                    timeout_ms = 250, -- How long to wait for the provider to return before showing completions and treating it as asynchronous
                 },
+                lsp = {
+                    async = true,     -- Whether we should show the completions before this provider returns, without waiting for it
+                    timeout_ms = 250, -- How long to wait for the provider to return before showing completions and treating it as asynchronous
+                }
             },
         },
 

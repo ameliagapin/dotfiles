@@ -1,5 +1,5 @@
 - link:
-    $HOME/.config/nvim: apps/nvim
+    $HOME/.config/nvim: apps/nvim/nvim
 - shell:
   - command: |
       BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

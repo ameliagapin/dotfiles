@@ -15,13 +15,14 @@ return {
                 "html-lsp",
                 "css-lsp",
                 "markdownlint",
-                "yamlls",
                 "jsonlint",
                 "buf",
+                "yaml-language-server",
 
                 -- Linters and diagnostics
                 "golangci-lint",
                 "luacheck", -- Lua linting
+                "markdownlint",
             },
         },
         config = function(_, opts)
