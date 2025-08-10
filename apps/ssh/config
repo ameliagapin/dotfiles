@@ -1,4 +1,5 @@
 Host *
+  UseKeychain yes
   CheckHostIP no
   SendEnv LANG
 Host 192.168.1.69

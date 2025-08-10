@@ -15,7 +15,6 @@ return {
                 "html-lsp",
                 "css-lsp",
                 "markdownlint",
-                "yamlls",
                 "jsonlint",
                 "buf",
 

@@ -12,4 +12,6 @@ pecho() {
 
 ## Currently nothing to do, I guess. There used to be stuff here
 
+## WIll need to make sure linters, ripgrep, and `:TSUpdate` are all installed
+
 exit 0
