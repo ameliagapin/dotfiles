@@ -17,6 +17,7 @@ return {
             -- {'<C-l>', ':Treewalker Right<CR>', desc = "Treewalker"},
         },
     },
+    { "mrbjarksen/neo-tree-diagnostics.nvim" },
     -- Enable for snow in nvim!!! (it's fun!)
     -- {
     --     "marcussimonsen/let-it-snow.nvim",
@@ -29,17 +30,29 @@ return {
     -- Evaluating?
 
     { 'sindrets/diffview.nvim' },
-    { 'akinsho/git-conflict.nvim', version = "*", config = true },
-    --    { 'sebdah/vim-delve' },
-    {
-        'stevearc/oil.nvim',
-        opts = {},
-        -- Optional dependencies
-        dependencies = { { "echasnovski/mini.icons", opts = {} } },
-        -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
-    },
-
-    { "mrbjarksen/neo-tree-diagnostics.nvim" },
+    { 'akinsho/git-conflict.nvim',           version = "*", config = true },
     {
         "giuxtaposition/blink-cmp-copilot",
-    } }
+    },
+
+
+    {
+        "WilliamHsieh/overlook.nvim",
+        opts = {},
+
+        -- Optional: set up common keybindings
+        keys = {
+            { "<leader>pd", function() require("overlook.api").peek_definition() end, desc = "Overlook: Peek definition" },
+            { "<leader>pc", function() require("overlook.api").close_all() end,       desc = "Overlook: Close all popup" },
+            { "<leader>pu", function() require("overlook.api").restore_popup() end,   desc = "Overlook: Restore popup" },
+        },
+    },
+
+    {
+        "olexsmir/gopher.nvim",
+        ft = "go",
+        ---@module "gopher"
+        ---@type gopher.Config
+        opts = {},
+    },
+}

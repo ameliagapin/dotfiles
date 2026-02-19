@@ -33,6 +33,7 @@ brew "glib"
 brew "cmake"
 brew "coreutils"
 brew "ctop"
+brew "dlvhdr/formulae/diffnav"
 brew "docker", link: false
 brew "docker-machine"
 brew "dust"

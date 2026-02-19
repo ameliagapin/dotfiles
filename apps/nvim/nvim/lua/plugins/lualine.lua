@@ -1,11 +1,18 @@
 return {
     {
         'nvim-lualine/lualine.nvim',
+        url = 'https://github.com/nvim-lualine/lualine.nvim',
+        build = {
+            -- PR that includes more customization options for the `location` component
+            -- https://github.com/nvim-lualine/lualine.nvim/pull/1334
+            'git pull --no-rebase --no-commit origin pull/1334/head',
+        },
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         opts = function()
             return {
                 options = {
                     icons_enabled = true,
+                    line_total_in_location = true,
                 },
                 sections = {
                     lualine_a = { 'mode' },

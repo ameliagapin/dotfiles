@@ -4,7 +4,7 @@
 export GOPATH=$HOME/go
 
 # PATH
-export PATH=$PATH:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:$GOPATH/bin:/opt/homebrew/bin:/opt/homebrew/opt
+export PATH=$PATH:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:$GOPATH/bin:/opt/homebrew/bin:/opt/homebrew/opt:$HOME/.local/bin
 
 export nvm
 export NVM_DIR="$HOME/.nvm"
