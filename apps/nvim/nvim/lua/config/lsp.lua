@@ -2,6 +2,7 @@ vim.lsp.enable({
     "gopls",
     "lua_ls",
     "golangci-lint",
+    "pyright",
 })
 
 vim.diagnostic.config({

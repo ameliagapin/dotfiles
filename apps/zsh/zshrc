@@ -151,7 +151,6 @@ plugins=(
     macos
     fzf
     # mise
-    direnv
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -168,12 +167,12 @@ fpath=($fpath "/root/.zfunctions")
  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Define navi cheatsheet locations. Kind of a hack
-export NAVI_PATH="$HOME/.cheatsheets:${_navi_path}/cheats"
-if [ -d ~/Projects/backend/docs/cheats ]; then
-    export NAVI_PATH="${NAVI_PATH}:$HOME/Projects/backend/docs/cheats"
-fi
+# export NAVI_PATH="$HOME/.cheatsheets:${_navi_path}/cheats"
+# if [ -d ~/Projects/backend/docs/cheats ]; then
+#     export NAVI_PATH="${NAVI_PATH}:$HOME/Projects/backend/docs/cheats"
+# fi
 
-source <(navi widget zsh)
+# source <(navi widget zsh)
 
 # nvm
-source $(brew --prefix nvm)/nvm.sh
+# source $(brew --prefix nvm)/nvm.sh

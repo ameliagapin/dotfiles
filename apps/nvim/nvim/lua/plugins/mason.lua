@@ -10,19 +10,20 @@ return {
                 -- LSP servers (matching your vim.lsp.enable() config)
                 "lua-language-server",
                 "gopls",
-                "typescript-language-server",
-                "rust-analyzer",
-                "html-lsp",
-                "css-lsp",
-                "markdownlint",
-                "jsonlint",
-                "buf",
+                -- "typescript-language-server",
+                -- "rust-analyzer",
+                -- "html-lsp",
+                -- "css-lsp",
+                -- "markdownlint",
+                -- "buf",
                 "yaml-language-server",
+                "lua-language-server",
 
                 -- Linters and diagnostics
                 "golangci-lint",
-                "luacheck", -- Lua linting
-                "markdownlint",
+                "jsonlint",
+                -- "luacheck", -- Lua linting
+                -- "markdownlint",
             },
         },
         config = function(_, opts)

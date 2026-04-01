@@ -6,6 +6,7 @@ return {
         provider = "cursor-acp", -- setting the name here is all you need to get started
         debug = true,
     },
+    enabled = false,
 
     -- these are just suggested keymaps; customize as desired
     keys = {

@@ -48,6 +48,12 @@ return {
                             vim.fn.jobstart({ "open", path }, { detach = true })
                         end,
                     },
+                    filtered_items = {
+                        visible = false, -- hide filtered items on open
+                        hide_gitignored = false,
+                        hide_dotfiles = false,
+                        never_show = { ".git" },
+                    },
                 },
                 document_symbols = {
                     renderers = {
