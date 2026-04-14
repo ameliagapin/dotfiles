@@ -5,7 +5,7 @@
     description: Installing Oh My Zsh and plugins
     quiet: false
     stdout: false
-    stderr: true 
+    stderr: true
 
 - link:
     $HOME/.zshrc: apps/zsh/zshrc
@@ -13,3 +13,4 @@
     $HOME/.exports: apps/zsh/exports
     $HOME/.aliases: apps/zsh/aliases
     $HOME/.cheatsheets: apps/navi/cheatsheets
+    $HOME/.sublime: apps/zsh/sublime

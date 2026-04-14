@@ -1,20 +1,20 @@
-vim.keymap.set('n', '<C-j>', '<Cmd>bnext<CR>', { silent = true })     -- Next buffer
+vim.keymap.set('n', '<C-j>', '<Cmd>bnext<CR>', { silent = true })     -- Next buffer:
 vim.keymap.set('n', '<C-k>', '<Cmd>bprevious<CR>', { silent = true }) -- Prev buffer
 vim.keymap.set('n', '00', '^')                                        -- Use 00 to go to the first non-whitespace char on line
 vim.keymap.set('n', '0', '0')                                         -- Map 0 to 0 to keep 0 working to go to start of line
 vim.keymap.set('n', '<C-w>', '<C-w><C-w>')                            -- Ctrl-w to toggle through windows
 
+vim.keymap.set('n', '<leader>ogl', ':silent !goland %:p<CR>', { desc = "Open current file in GoLand" })
+vim.keymap.set('n', '<leader>of', ':silent !open -R %:p<CR>', { silent = true, desc = "Reveal the current file in Finder" })
+
 -- Git
 vim.keymap.set('n', '<leader>gb', '<Cmd>Git blame<CR>')
+vim.keymap.set('n', '<leader>ga', '<Cmd>!git add %<CR>', { desc = "Stage current file in git"})
 
 -- Diagnostics
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
--- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev) -- Commented out because this is now default
--- vim.keymap.set('n', ']d', vim.diagnostic.goto_next) -- Commented out because this is now default
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
-vim.keymap.set('n', '<leader>t', '<Cmd>Trouble diagnostics toggle filter.buf=0<CR>')
-vim.keymap.set('n', '<leader>tw', '<Cmd>Trouble diagnostics toggle<CR>')
 
 -- Close all floating windows
 -- except for telescope. Telescope is handled by adding a mapping in telescope.lua

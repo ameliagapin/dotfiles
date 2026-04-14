@@ -1,86 +1,76 @@
-return {
-    {
-        -- Highlight, edit, and navigate code
-        'nvim-treesitter/nvim-treesitter',
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter-textobjects',
-            'HiPhish/rainbow-delimiters.nvim',
-        },
-        priority = 1001,
-        config = function()
-            require('nvim-treesitter.configs').setup {
-                -- Add languages to be installed here that you want installed for treesitter
-                ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'yaml', 'bash' },
+--- Highlight, edit, and navigate code
 
-                -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-                auto_install = true,
-                -- Install languages synchronously (only applied to `ensure_installed`)
-                sync_install = false,
-                -- List of parsers to ignore installing
-                ignore_install = {},
-                -- You can specify additional Treesitter modules here: -- For example: -- playground = {--enable = true,-- },
-                modules = {},
-                highlight = {
-                    enable = true,
-                },
-                indent = { enable = true },
-                incremental_selection = {
-                    enable = true,
-                    keymaps = {
-                        init_selection = '<c-space>',
-                        node_incremental = '<c-space>',
-                        scope_incremental = '<c-s>',
-                        node_decremental = '<M-space>',
-                    },
-                },
-                textobjects = {
-                    select = {
-                        enable = true,
-                        lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-                        keymaps = {
-                            -- You can use the capture groups defined in textobjects.scm
-                            ['aa'] = '@parameter.outer',
-                            ['ia'] = '@parameter.inner',
-                            ['af'] = '@function.outer',
-                            ['if'] = '@function.inner',
-                            ['ac'] = '@class.outer',
-                            ['ic'] = '@class.inner',
-                        },
-                    },
-                    move = {
-                        enable = true,
-                        set_jumps = true, -- whether to set jumps in the jumplist
-                        goto_next_start = {
-                            -- [']m'] = '@function.outer',
-                            -- [']]'] = '@class.outer',
-                            [']]'] = '@function.outer',
-                        },
-                        goto_next_end = {
-                            -- [']M'] = '@function.outer',
-                            -- [']['] = '@class.outer',
-                            [']['] = '@function.outer',
-                        },
-                        goto_previous_start = {
-                            -- ['[m'] = '@function.outer',
-                            -- ['[['] = '@class.outer',
-                            ['[['] = '@function.outer',
-                        },
-                        goto_previous_end = {
-                            -- ['[M'] = '@function.outer',
-                            ['[]'] = '@class.outer',
-                        },
-                    },
-                    swap = {
-                        enable = true,
-                        swap_next = {
-                            ['<leader>a'] = '@parameter.inner',
-                        },
-                        swap_previous = {
-                            ['<leader>A'] = '@parameter.inner',
-                        },
-                    },
-                },
-            }
-        end
-    },
+local M = {
+  'nvim-treesitter/nvim-treesitter',
+
+  lazy = false,
+  branch = 'main',
+  build = ':TSUpdate',
 }
+
+M.config = function()
+  local parsers = {
+    'bash',
+    'c',
+    'comment',
+    'css',
+    'csv',
+    'diff',
+    'dockerfile',
+    'gitignore',
+    'go',
+    'html',
+    'javascript',
+    'jsdoc',
+    'json',
+    'lua',
+    'luadoc',
+    'make',
+    'markdown',
+    'markdown_inline',
+    'nginx',
+    'php',
+    'python',
+    'query',
+    'regex',
+    'rust',
+    'scss',
+    'svelte',
+    'sql',
+    'templ',
+    'toml',
+    'tsv',
+    'typescript',
+    'vim',
+    'vimdoc',
+    'xml',
+    'yaml',
+    'zig',
+  }
+
+  require('nvim-treesitter').install(parsers)
+
+  vim.api.nvim_create_autocmd('FileType', {
+    callback = function(args)
+      local buf, filetype = args.buf, args.match
+
+      local language = vim.treesitter.language.get_lang(filetype)
+      if not language then
+        return
+      end
+
+      -- check if parser exists and load it
+      if not vim.treesitter.language.add(language) then
+        return
+      end
+
+      -- enables syntax highlighting and other treesitter features
+      vim.treesitter.start(buf, language)
+
+      -- enables treesitter based indentation
+      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end,
+  })
+end
+
+return M

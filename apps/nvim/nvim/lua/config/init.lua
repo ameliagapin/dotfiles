@@ -10,7 +10,7 @@ vim.opt.clipboard = "unnamed"
 
 -- Undo file
 vim.opt.undofile = true
-vim.opt.undodir = vim.fn.stdpath("data") .. "undo"
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 
 -- Splits
 vim.opt.splitbelow = true
@@ -35,7 +35,7 @@ vim.opt.wildignore:append({ '*.DS_Store' })
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
     callback = function()
-        vim.highlight.on_yank()
+        vim.hl.on_yank()
     end,
     group = highlight_group,
     pattern = '*',
@@ -44,8 +44,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Strip whitespace on save and restore cursor position
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = {"*"},
-    callback = function(ev)
-        save_cursor = vim.fn.getpos(".")
+    callback = function(_)
+        local save_cursor = vim.fn.getpos(".")
         vim.cmd([[%s/\s\+$//e]])
         vim.fn.setpos(".", save_cursor)
     end,

@@ -11,15 +11,18 @@ if ! pgrep -x "Notion" > /dev/null; then
     exit 1
 fi
 
-PAGE_TITLE=$(osascript -e 'tell application "Notion" to get name of front window')
+PAGE_TITLE=$(osascript -e '
+tell application "System Events"
+    tell process "Notion"
+        get name of front window
+    end tell
+end tell')
 PAGE_TITLE="${PAGE_TITLE% - Notion}"
-
-osascript -e 'tell application "Notion" to activate'
-sleep 0.1
 
 osascript -e '
 tell application "System Events"
     tell process "Notion"
+        set frontmost to true
         keystroke "l" using {command down}
     end tell
 end tell'

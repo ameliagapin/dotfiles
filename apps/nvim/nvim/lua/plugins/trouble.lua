@@ -11,6 +11,16 @@ return {
         },
         keys = {
             {
+                "<leader>ta",
+                "<cmd>Trouble diagnostics toggle filter.severity=vim.diagnostic.severity.ERROR<cr>",
+                desc = "Diagnostics (Trouble)",
+            },
+            {
+                "<leader>tb",
+                "<cmd>Trouble diagnostics toggle filter.buf=0 filter.severity=vim.diagnostic.severity.ERROR<cr>",
+                desc = "Diagnostics (Trouble)",
+            },
+            {
                 "<leader>xx",
                 "<cmd>Trouble diagnostics toggle<cr>",
                 desc = "Diagnostics (Trouble)",

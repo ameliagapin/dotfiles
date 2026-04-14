@@ -3,6 +3,8 @@ vim.lsp.enable({
     "lua_ls",
     "golangci-lint",
     "pyright",
+    "typescript",
+    "eslint",
 })
 
 vim.diagnostic.config({
@@ -34,6 +36,7 @@ vim.diagnostic.config({
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
     callback = function(event)
+        local opts = { buffer = event.buf }
         -- defaults: https://neovim.io/doc/user/news-0.11.html#_defaults
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
@@ -49,9 +52,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.lsp.buf.format { async = true }
         end, opts)
 
-        vim.keymap.set('n', '<C-i>', function()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-        end)
+        -- vim.keymap.set('n', '<C-i>', function()
+        --     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+        -- end)
 
         local function client_supports_method(client, method, bufnr)
             if vim.fn.has 'nvim-0.11' == 1 then
@@ -124,6 +127,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
             pattern = "*",
             command = "lua OpenDiagnosticIfNoFloat()",
             group = "lsp_diagnostics_hold",
+        })
+
+        -- Restore some LSP functions
+        vim.api.nvim_create_user_command("LspInfo", "checkhealth vim.lsp", {
+            desc = "Show LSP Info",
+        })
+
+        vim.api.nvim_create_user_command("LspLog", function(_)
+            local state_path = vim.fn.stdpath("state")
+            local log_path = vim.fs.joinpath(state_path, "lsp.log")
+
+            vim.cmd(string.format("edit %s", log_path))
+        end, {
+            desc = "Show LSP log",
+        })
+
+        vim.api.nvim_create_user_command("LspRestart", "lsp restart", {
+            desc = "Restart LSP",
         })
     end,
 })

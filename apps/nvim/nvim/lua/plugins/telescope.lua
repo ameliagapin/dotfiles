@@ -1,7 +1,8 @@
 return {
     {
         'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
+        -- Use master and not main because this has a fix to make treesitter work in the preview
+        branch = 'master',
         dependencies = {
             'nvim-lua/plenary.nvim',
             -- Fuzzy Finder Algorithm which requires local dependencies to be built.
@@ -18,10 +19,12 @@ return {
             },
         },
         keys = {
-            { "<C-b>",      "<cmd>Telescope buffers<cr>",                desc = "Show buffers in telescope" },
-            { "<C-p>",      "<cmd>Telescope find_files hidden=true<cr>", desc = "Find files in telescope" },
-            { "<leader>/",  "<cmd>Telescope live_grep hidden=true<cr>",  desc = "Find files in telescope" },
-            { "<leader>//", ":Telescope live_grep hidden=true cwd=",     desc = "Find files in path in telescope" },
+            { "<C-b>",      "<cmd>Telescope buffers<cr>",                                                            desc = "Show buffers in telescope" },
+            { "<C-p>",      "<cmd>Telescope find_files<cr>",                                                                     desc = "Find files in telescope" },
+            { "<leader>/",  "<cmd>Telescope live_grep hidden=true<cr>",                                              desc = "Find files in telescope" },
+            { "<leader>//", ":Telescope live_grep hidden=true cwd=",                                                 desc = "Find files in path in telescope" },
+            { "<leader>/d", function() require('telescope.builtin').live_grep({ cwd = vim.fn.expand('%:p:h') }) end, desc = "Live grep in buffer's directory" },
+            { '<leader>/r', require('telescope.builtin').lsp_references, desc = "Find references in telescope" },
         },
         config = function()
             local actions = require('telescope.actions')
@@ -50,15 +53,21 @@ return {
                         'target',
                         '__pycache__',
                         '*.lock',
+                        '.claude/worktrees',
                     },
                 },
                 pickers = {
+                    find_files = {
+                        hidden = true,
+                        no_ignore = true,
+                    },
                     grep_string = {
                         additional_args = function(opts)
                             return {
                                 "--hidden",
+                                "--no-ignore",
                                 "--glob",
-                                '!{**/•git/*,**/node_modules/*}',
+                                '!{**/.git/*,**/node_modules/*}',
                             }
                         end
                     },
@@ -66,8 +75,9 @@ return {
                         additional_args = function(opts)
                             return {
                                 "--hidden",
+                                "--no-ignore",
                                 "--glob",
-                                '!{**/•git/*,**/node_modules/*}',
+                                '!{**/.git/*,**/node_modules/*}',
                             }
                         end
                     },

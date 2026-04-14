@@ -175,4 +175,4 @@ fpath=($fpath "/root/.zfunctions")
 # source <(navi widget zsh)
 
 # nvm
-# source $(brew --prefix nvm)/nvm.sh
+source $(brew --prefix nvm)/nvm.sh

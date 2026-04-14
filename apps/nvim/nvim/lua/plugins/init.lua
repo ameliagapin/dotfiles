@@ -1,10 +1,13 @@
 return {
-    { "catppuccin/nvim",            name = "catppuccin", priority = 1000, lazy = false },
-    { 'folke/which-key.nvim',       opts = {} },
+    { "catppuccin/nvim",                name = "catppuccin", priority = 1000, lazy = false },
+    { 'folke/which-key.nvim',           opts = {} },
     { 'norcalli/nvim-colorizer.lua' },
     { 'tpope/vim-fugitive' },
+    { 'tpope/vim-rhubarb' },
     -- Highlight other instances of the word under the cursor
     { 'RRethy/vim-illuminate' },
+
+    { 'HiPhish/rainbow-delimiters.nvim' },
     {
         "aaronik/treewalker.nvim",
         opts = {
@@ -27,10 +30,11 @@ return {
     --     },
     -- },
 
+    { 'akinsho/git-conflict.nvim',           version = "*", config = true },
+
     -- Evaluating?
 
     { 'sindrets/diffview.nvim' },
-    { 'akinsho/git-conflict.nvim',           version = "*", config = true },
     {
         "giuxtaposition/blink-cmp-copilot",
     },

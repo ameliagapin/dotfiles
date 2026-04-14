@@ -103,6 +103,7 @@ brew "thefuck", link: false
 brew "tig"
 brew "tmux"
 brew "tree"
+brew "tree-sitter-cli"
 brew "vim"
 brew "wget"
 brew "yarn"
