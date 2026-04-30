@@ -20,18 +20,18 @@ return {
         keymap = {
             preset = 'default',
 
-            -- ['<C-space>'] = { 'select_and_accept' },
-            -- ['<Tab>'] = { 'select_and_accept', },
             ['<C-k>'] = { 'select_prev', 'fallback' },
             ['<C-j>'] = { 'select_next', 'fallback' },
-            ['<Tab>'] = { 'hide' },
-            -- ['<Tab>'] = { 'snippet_forward', 'fallback' },
-            -- ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+            ['<S-Tab>'] = { 'hide' },
             ['<C-h>'] = { 'show_signature', 'hide_signature', 'fallback' },
             ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
             ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
-            -- ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
             ['<C-space>'] = { 'show', 'select_and_accept' },
+            -- ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+            -- ['<C-space>'] = { 'select_and_accept' },
+            -- ['<Tab>'] = { 'select_and_accept', },
+            -- ['<Tab>'] = { 'snippet_forward', 'fallback' },
+            -- ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
         },
 
         appearance = {
@@ -119,7 +119,7 @@ return {
                 lsp = {
                     async = true,     -- Whether we should show the completions before this provider returns, without waiting for it
                     timeout_ms = 250, -- How long to wait for the provider to return before showing completions and treating it as asynchronous
-                }
+                },
             },
         },
 

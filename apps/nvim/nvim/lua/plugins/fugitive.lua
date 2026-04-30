@@ -8,7 +8,7 @@ return {
 
         keys = {
             {
-                "<leader>gh", "<cmd>GBrowse<cr>",
+                "<leader>ogh", "<cmd>GBrowse<cr>",
                 desc = "Open line in Github",
                 mode = { "n", "v" },
             },

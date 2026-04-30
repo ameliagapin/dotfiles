@@ -2,14 +2,17 @@ vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.wo.number = true
 vim.opt.showmode = false -- Hide --INSERT-- from status line
-vim.opt.wrap = false
 vim.opt.list = true
 vim.opt.listchars = {
-    eol = '↵',
+    -- eol = '↵',
     trail = '·',
     space = '·',
     tab = '→ ',
 }
+
+vim.opt.wrap = false
+vim.wo.linebreak = true -- When wrapping is enabled, this breaks long lines at nicer boundaries instead of in the middle of a word
+vim.wo.breakindent = true -- When a wrapped line continues visually, keep the continuation indented.
 
 vim.opt.cursorline = true -- highlight current line
 vim.opt.colorcolumn = '80,120'
@@ -39,6 +42,25 @@ require("catppuccin").setup({
         types = {},
         operators = {},
     },
+    lsp_styles = {
+        virtual_text = {
+            errors = { "italic" },
+            hints = { "italic" },
+            warnings = { "italic" },
+            information = { "italic" },
+            ok = { "italic" },
+        },
+        underlines = {
+            errors = { "undercurl" },
+            hints = { "undercurl" },
+            warnings = { "undercurl" },
+            information = { "undercurl" },
+            ok = { "undercurl" },
+        },
+        inlay_hints = {
+            background = true,
+        },
+    },
     term_colors = true,
     integrations = {
         cmp = true,
@@ -49,25 +71,6 @@ require("catppuccin").setup({
         notify = false,
         lsp_trouble = true,
         telescope = true,
-        native_lsp = {
-            enabled = true,
-            virtual_text = {
-                errors = { "italic" },
-                hints = { "italic" },
-                warnings = { "italic" },
-                information = { "italic" },
-            },
-            underlines = {
-                errors = { "undercurl" },
-                hints = { "undercurl" },
-                warnings = { "undercurl" },
-                information = { "undercurl" },
-                info = { "undercurl" },
-            },
-            inlay_hints = {
-                background = true,
-            },
-        },
         -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
     },
     highlight_overrides = {

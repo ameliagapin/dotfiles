@@ -14,7 +14,6 @@ tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "jesseduffield/lazydocker"
-tap "mongodb/brew"
 tap "muesli/tap"
 tap "osx-cross/arm"
 tap "osx-cross/avr"
@@ -53,6 +52,7 @@ brew "gitui"
 brew "glances"
 brew "go"
 brew "golangci-lint"
+brew "golangci-lint-langserver"
 brew "gomplate"
 brew "graphviz"
 brew "protobuf"
@@ -148,16 +148,3 @@ cask "typora"
 cask "tunnelblick"
 cask "vagrant"
 cask "unclack"
-mas "AdBlock", id: 1402042596
-mas "Adobe Lightroom", id: 1451544217
-mas "Airmail", id: 918858936
-mas "Annotate", id: 918207447
-mas "Bear", id: 1091189122
-mas "Hush", id: 1544743900
-mas "Keynote", id: 409183694
-mas "Numbers", id: 409203825
-mas "Octotree", id: 1457450145
-mas "Pages", id: 409201541
-mas "StopTheMadness", id: 1376402589
-mas "WhatsApp", id: 1147396723
-mas "Xcode", id: 497799835

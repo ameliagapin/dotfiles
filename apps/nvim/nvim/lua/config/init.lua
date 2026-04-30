@@ -1,5 +1,5 @@
 vim.opt.updatetime = 100
-vim.opt.timeoutlen = 500
+vim.opt.timeoutlen = 250
 vim.opt.scrolloff = 3 -- start scrolling 3 lines before top/bottom
 vim.o.mouse = 'a'     -- enable mouse mode
 
@@ -29,6 +29,11 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 vim.opt.wildignore:append({ '*.DS_Store' })
+
+vim.o.wildmenu = true -- Enhances command-line completion, especially when pressing <Tab> in command-line mode.
+vim.o.wildmode = "longest:full,full" -- Controls how command-line completion behaves across repeated <Tab> presses.
+
+vim.o.showcmd = true
 
 -- Highlight on yank
 -- See `:help vim.highlight.on_yank()`

@@ -156,7 +156,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Source extra files
-for file in ~/.{exports,aliases,functions,1password}; do
+for file in ~/.{exports,aliases,functions,sublime}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file" && echo "Sourced $file"
 done;
 unset file;
