@@ -20,11 +20,12 @@ return {
         },
         keys = {
             { "<C-b>",      "<cmd>Telescope buffers<cr>",                                                            desc = "Show buffers in telescope" },
-            { "<C-p>",      "<cmd>Telescope find_files<cr>",                                                                     desc = "Find files in telescope" },
+            { "<C-p>",      "<cmd>Telescope find_files<cr>",                                                         desc = "Find files in telescope" },
             { "<leader>/",  "<cmd>Telescope live_grep hidden=true<cr>",                                              desc = "Find files in telescope" },
             { "<leader>//", ":Telescope live_grep hidden=true cwd=",                                                 desc = "Find files in path in telescope" },
             { "<leader>/d", function() require('telescope.builtin').live_grep({ cwd = vim.fn.expand('%:p:h') }) end, desc = "Live grep in buffer's directory" },
-            { '<leader>/r', require('telescope.builtin').lsp_references, desc = "Find references in telescope" },
+            { '<leader>/r', require('telescope.builtin').lsp_references,                                             desc = "Find references in telescope" },
+            { '<leader>/i', require('telescope.builtin').lsp_implementations,                                        desc = "Find references in telescope" },
         },
         config = function()
             local actions = require('telescope.actions')
