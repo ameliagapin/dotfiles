@@ -1,9 +1,0 @@
-- link:
-    $HOME/.config/nvim: apps/nvim/nvim
-- shell:
-  - command: |
-      BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-      ${BASE_DIR}/apps/nvim/install.sh
-    description: Installing and configuring nvim plugins
-    quiet: true
-    stdout: true

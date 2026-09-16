@@ -1,0 +1,104 @@
+#!/bin/zsh
+# dots — set up or update this Mac from the dotfiles repo.
+#
+#   ./dots                 interactive menu
+#   ./dots nvim homebrew   run the named steps, in that order
+#   ./dots --all           run every step in order
+#   ./dots --list          list steps
+#
+# Pure zsh; nothing to install first. Every step is safe to re-run.
+
+DOTS_DIR=${0:A:h}
+LIB_DIR=$DOTS_DIR/lib
+STEPS_DIR=$DOTS_DIR/steps
+
+source "$LIB_DIR/core.zsh"
+source "$LIB_DIR/ui.zsh"
+
+typeset -ga STEP_IDS
+typeset -gA STEP_FILE STEP_NAME_OF STEP_DESC_OF STEP_STATUS
+
+# Each steps/NN-name.zsh declares STEP_NAME and STEP_DESC and defines
+# step_run(). The id is the file name without prefix and extension.
+discover_steps() {
+    local f id
+    STEP_IDS=()
+    for f in "$STEPS_DIR"/*.zsh(N.n); do
+        STEP_NAME= STEP_DESC=
+        source "$f"
+        id=${${f:t}#*-}
+        id=${id%.zsh}
+        STEP_IDS+=("$id")
+        STEP_FILE[$id]=$f
+        STEP_NAME_OF[$id]=${STEP_NAME:-$id}
+        STEP_DESC_OF[$id]=$STEP_DESC
+    done
+    unfunction step_run 2> /dev/null
+}
+
+# Run one step in a subshell so a failure aborts the step, not this script.
+run_step() {
+    local id=$1 rc
+    print
+    print -r -- "${_c_bold}==> ${STEP_NAME_OF[$id]}${_c_reset}"
+    (
+        set -e -o pipefail
+        source "${STEP_FILE[$id]}"
+        step_run
+    )
+    rc=$?
+    prime_env
+    if (( rc == 0 )); then
+        STEP_STATUS[$id]=1
+        ok "${STEP_NAME_OF[$id]}: done"
+    else
+        STEP_STATUS[$id]=2
+        err "${STEP_NAME_OF[$id]}: failed (exit $rc)"
+    fi
+    return $rc
+}
+
+run_many() {
+    local id failed=0
+    for id in "$@"; do
+        if [[ -z ${STEP_FILE[$id]} ]]; then
+            err "unknown step: $id"
+            print -r -- "steps: ${STEP_IDS[*]}"
+            return 2
+        fi
+    done
+    for id in "$@"; do
+        # not `run_step || failed=1`: a function on the left of || runs with
+        # errexit suppressed, and that leaks into the step's subshell
+        run_step "$id"
+        if (( $? != 0 )); then
+            failed=1
+        fi
+    done
+    (( failed == 0 )) && ok "all steps done" || err "some steps failed"
+    return $failed
+}
+
+list_steps() {
+    local id
+    for id in "${STEP_IDS[@]}"; do
+        print -r -- "${(r:14:)id} ${STEP_DESC_OF[$id]}"
+    done
+}
+
+usage() {
+    sed -n '2,9p' "$0" | sed 's/^# \{0,1\}//'
+    print
+    list_steps
+}
+
+prime_env
+discover_steps
+
+case ${1:-} in
+    -h|--help) usage ;;
+    -l|--list) list_steps ;;
+    -a|--all)  run_many "${STEP_IDS[@]}" ;;
+    '')        tui_main ;;
+    *)         run_many "$@" ;;
+esac

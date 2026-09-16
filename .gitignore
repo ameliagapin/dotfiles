@@ -12,11 +12,12 @@ Thumbs.db
 node_modules
 
 ######################
-# VIM                #
+# machine-local      #
 ######################
-apps/nvim/vim/plugged
-apps/nvim/vim/undo
+# work-specific zsh files, linked by the zsh step only when present
 apps/zsh/hinge
-
 apps/zsh/1password
+apps/zsh/sublime
+
 apps/nvim/nvim/.claude
+apps/homebrew/Brewfile.lock.json

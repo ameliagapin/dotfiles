@@ -1,0 +1,28 @@
+#!/bin/zsh
+# One-liner for a brand-new Mac. Installs the Xcode Command Line Tools (for
+# git), clones the dotfiles, and hands off to ./dots.
+#
+#   curl -fsSL https://raw.githubusercontent.com/ameliagapin/dotfiles/master/bootstrap | zsh
+
+set -e
+
+REPO=https://github.com/ameliagapin/dotfiles.git
+DEST=$HOME/Projects/dotfiles
+
+if ! xcode-select -p > /dev/null 2>&1; then
+    print "Installing the Xcode Command Line Tools — a macOS dialog will open, click Install."
+    xcode-select --install > /dev/null 2>&1 || true
+    until xcode-select -p > /dev/null 2>&1; do
+        sleep 5
+    done
+fi
+
+if [[ -d $DEST/.git ]]; then
+    print "dotfiles already cloned at $DEST"
+else
+    mkdir -p "${DEST:h}"
+    git clone "$REPO" "$DEST"
+fi
+
+cd "$DEST"
+exec ./dots < /dev/tty
