@@ -48,7 +48,12 @@ M.config = function()
     'zig',
   }
 
-  require('nvim-treesitter').install(parsers)
+  local task = require('nvim-treesitter').install(parsers)
+  -- When run headless (e.g. by ./dots), block until the parsers are built so
+  -- the bootstrap can't quit nvim mid-install. Interactive startup is unchanged.
+  if #vim.api.nvim_list_uis() == 0 then
+    task:wait(600000)
+  end
 
   vim.api.nvim_create_autocmd('FileType', {
     callback = function(args)

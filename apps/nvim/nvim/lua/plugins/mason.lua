@@ -13,6 +13,7 @@ return {
                 "typescript-language-server",
                 "eslint-lsp",
                 "yaml-language-server",
+                "pyright",
 
                 -- Linters and diagnostics
                 "golangci-lint",
