@@ -10,7 +10,7 @@ step_run() {
         # an old version of this repo installed it as root
         if [[ ! -O $omz ]]; then
             require_sudo "fix ownership of $omz (it was installed as root)"
-            run sudo chown -R "$USER:staff" "$omz"
+            run sudo chown -R "${USER}:staff" "$omz"
         fi
         if git -C "$omz" pull --ff-only --quiet; then
             ok "Oh My Zsh up to date"

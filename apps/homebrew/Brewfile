@@ -6,6 +6,7 @@ tap "go-swagger/go-swagger"
 tap "qmk/qmk"
 tap "osx-cross/arm"   # qmk toolchain
 tap "osx-cross/avr"   # qmk toolchain
+tap "abue-ammar/tinycast"
 
 # --- shell ---
 brew "bash"
@@ -82,7 +83,9 @@ brew "go"
 brew "node", link: false
 brew "nvm"
 brew "yarn"
+brew "pnpm"
 brew "python3"
+brew "uv"
 
 # --- go / protobuf toolchain ---
 brew "golangci-lint"
@@ -137,5 +140,5 @@ cask "postman"
 cask "qmk-toolbox"
 cask "raycast"
 cask "slack"
+cask "tinycast"
 cask "typora"
-cask "unclack"
