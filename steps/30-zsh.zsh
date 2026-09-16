@@ -12,6 +12,15 @@ step_run() {
             require_sudo "fix ownership of $omz (it was installed as root)"
             run sudo chown -R "${USER}:staff" "$omz"
         fi
+        # the old install cloned these into Oh My Zsh's own plugins dir, which
+        # blocks its git pull; they live in custom/plugins now
+        local legacy
+        for legacy in zsh-autosuggestions zsh-syntax-highlighting; do
+            if [[ -d $omz/plugins/$legacy/.git ]]; then
+                rm -rf "$omz/plugins/$legacy"
+                info "removed legacy clone $omz/plugins/$legacy"
+            fi
+        done
         if git -C "$omz" pull --ff-only --quiet; then
             ok "Oh My Zsh up to date"
         else
