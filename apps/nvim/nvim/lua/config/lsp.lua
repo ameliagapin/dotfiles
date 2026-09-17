@@ -57,9 +57,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.lsp.buf.format { async = true }
         end, opts)
 
-        -- vim.keymap.set('n', '<C-i>', function()
-        --     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-        -- end)
+        vim.keymap.set('n', '<leader>ih', function()
+            local enabled = vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }
+            vim.lsp.inlay_hint.enable(not enabled, { bufnr = event.buf })
+        end, { buffer = event.buf, desc = 'Toggle inlay hints' })
 
         local function client_supports_method(client, method, bufnr)
             if vim.fn.has 'nvim-0.11' == 1 then
