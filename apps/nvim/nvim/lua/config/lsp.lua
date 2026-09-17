@@ -1,3 +1,8 @@
+-- LSP semantic tokens normally paint over treesitter (125 vs 100). The
+-- color overrides in config/style.lua are treesitter groups, so let
+-- treesitter win and keep tokens for what it doesn't cover.
+vim.hl.priorities.semantic_tokens = 95
+
 vim.lsp.enable({
     "gopls",
     "lua_ls",

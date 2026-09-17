@@ -37,13 +37,23 @@ nvim_headless_lua() {
     return $rc
 }
 
+# Build every parser listed in lua/plugins/treesitter.lua. The config already
+# starts this install asynchronously at startup; calling install() again for
+# the same list returns a task we can block on (already-installed parsers are
+# skipped), so nvim can't quit mid-build.
+NVIM_PARSERS_LUA='
+local parsers = require("plugins.treesitter").parsers
+require("nvim-treesitter").install(parsers):wait(600000)
+print("treesitter: " .. #parsers .. " parsers present")
+'
+
 # Make sure everything in mason.nvim's ensure_installed list is installed.
 # The list is read from the live lazy.nvim spec so it only lives in
 # lua/plugins/mason.lua. That config also starts installing missing packages
 # on its own (asynchronously) at startup, so: give it a moment to start,
 # install only what it didn't touch, then wait for everything in flight.
 # :MasonInstall blocks when nvim is headless.
-NVIM_MASON_ENSURE_LUA='
+NVIM_MASON_ENSURE_LUA="$NVIM_PARSERS_LUA"'
 local plugin = require("lazy.core.config").plugins["mason.nvim"]
 local opts = require("lazy.core.plugin").values(plugin, "opts", false)
 local registry = require("mason-registry")
@@ -77,7 +87,7 @@ print("Mason: all " .. #pkgs .. " packages installed")
 '
 
 # Upgrade every installed Mason package to its latest registry version.
-NVIM_MASON_UPGRADE_LUA='
+NVIM_MASON_UPGRADE_LUA="$NVIM_PARSERS_LUA"'
 local registry = require("mason-registry")
 registry.refresh()
 local function none_installing()

@@ -15,10 +15,9 @@ step_run() {
         warn "npm not found — npm-based LSP servers will fail to install (run the node step)"
     fi
 
-    # One nvim session: lazy.nvim installs plugins to the lockfile; loading
-    # the config builds missing treesitter parsers (it waits for them when
-    # headless, see lua/plugins/treesitter.lua) and starts Mason installs,
-    # which the Lua snippet then finishes and verifies.
+    # One nvim session: lazy.nvim installs plugins to the lockfile, then the
+    # Lua snippet waits for the treesitter parsers and Mason packages the
+    # config asks for and verifies they're all there.
     nvim_headless_lua "install plugins, treesitter parsers and LSP servers" \
         "$NVIM_MASON_ENSURE_LUA" "+Lazy! restore"
 }
