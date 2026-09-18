@@ -32,6 +32,7 @@ Nothing else is needed first — `dots` is plain zsh.
 | step          | what it does |
 |---------------|--------------|
 | `xcode`       | Command Line Tools; accepts the Xcode license if Xcode.app is installed |
+| `ssh-key`     | ed25519 key at `~/.ssh/id_ed25519`, passphrase in the keychain, public key on the clipboard; offers to open GitHub's add-key page |
 | `homebrew`    | installs Homebrew, then `brew bundle` from [`apps/homebrew/Brewfile`](apps/homebrew/Brewfile), `brew upgrade`, `brew cleanup` |
 | `zsh`         | Oh My Zsh, spaceship prompt, autosuggestions/syntax-highlighting; links `~/.zshrc` & co; zsh as login shell |
 | `git`         | `~/.gitconfig` |
