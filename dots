@@ -16,15 +16,17 @@ source "$LIB_DIR/core.zsh"
 source "$LIB_DIR/ui.zsh"
 
 typeset -ga STEP_IDS
-typeset -gA STEP_FILE STEP_NAME_OF STEP_DESC_OF STEP_STATUS
+typeset -gA STEP_FILE STEP_NAME_OF STEP_DESC_OF STEP_STATUS STEP_REQUIRED_OF
 
 # Each steps/NN-name.zsh declares STEP_NAME and STEP_DESC and defines
-# step_run(). The id is the file name without prefix and extension.
+# step_run(). The id is the file name without prefix and extension. A step
+# that sets STEP_REQUIRED=1 is a prerequisite: if it fails, the rest of the
+# run is abandoned rather than failing in more confusing ways.
 discover_steps() {
     local f id
     STEP_IDS=()
     for f in "$STEPS_DIR"/*.zsh(N.n); do
-        STEP_NAME= STEP_DESC=
+        STEP_NAME= STEP_DESC= STEP_REQUIRED=
         source "$f"
         id=${${f:t}#*-}
         id=${id%.zsh}
@@ -32,6 +34,7 @@ discover_steps() {
         STEP_FILE[$id]=$f
         STEP_NAME_OF[$id]=${STEP_NAME:-$id}
         STEP_DESC_OF[$id]=$STEP_DESC
+        STEP_REQUIRED_OF[$id]=$STEP_REQUIRED
     done
     unfunction step_run 2> /dev/null
 }
@@ -73,6 +76,10 @@ run_many() {
         run_step "$id"
         if (( $? != 0 )); then
             failed=1
+            if [[ -n ${STEP_REQUIRED_OF[$id]} && $# -gt 1 ]]; then
+                err "${STEP_NAME_OF[$id]} is a prerequisite — stopping before the rest"
+                break
+            fi
         fi
     done
     (( failed == 0 )) && ok "all steps done" || err "some steps failed"

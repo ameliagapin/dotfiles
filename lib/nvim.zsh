@@ -27,13 +27,13 @@ nvim_headless() {
 # nvim_headless_lua <label> <lua source> [nvim args...] — same, running the
 # given args first and then a multi-line Lua snippet.
 nvim_headless_lua() {
-    local label=$1 code=$2 script rc
+    local label=$1 code=$2 dir rc
     shift 2
-    script=$(mktemp -t dots-nvim).lua
-    print -r -- "$code" > "$script"
-    nvim_headless "$label" "$@" "+luafile $script"
+    dir=$(mktemp -d)
+    print -r -- "$code" > "$dir/run.lua"
+    nvim_headless "$label" "$@" "+luafile $dir/run.lua"
     rc=$?
-    rm -f "$script"
+    rm -rf "$dir"
     return $rc
 }
 
