@@ -1,28 +1,67 @@
-#!/bin/zsh
-# One-liner for a brand-new Mac. Installs the Xcode Command Line Tools (for
-# git), clones the dotfiles, and hands off to ./dots.
+#!/bin/sh
+# Bootstrap a brand-new Mac: Xcode Command Line Tools, clone the dotfiles,
+# then hand off to ./dots.
 #
-#   curl -fsSL https://raw.githubusercontent.com/ameliagapin/dotfiles/master/bootstrap | zsh
+#   curl -fsSL https://raw.githubusercontent.com/ameliagapin/dotfiles/master/bootstrap | bash
+#
+# Plain POSIX sh, so piping it to bash, sh or zsh all work. Safe to re-run:
+# an existing clone is fast-forwarded instead of re-cloned.
+#
+# Overrides (mostly for testing a branch before it's merged):
+#   DOTFILES_DIR     where to clone      (default ~/Projects/dotfiles)
+#   DOTFILES_BRANCH  branch to check out (default master)
+#   DOTFILES_REPO    repository to clone (default this one, over https)
 
-set -e
+set -eu
 
-REPO=https://github.com/ameliagapin/dotfiles.git
-DEST=$HOME/Projects/dotfiles
+DEST=${DOTFILES_DIR:-$HOME/Projects/dotfiles}
+BRANCH=${DOTFILES_BRANCH:-master}
+REPO=${DOTFILES_REPO:-https://github.com/ameliagapin/dotfiles.git}
+REPO_SSH=git@github.com:ameliagapin/dotfiles.git
 
-if ! xcode-select -p > /dev/null 2>&1; then
-    print "Installing the Xcode Command Line Tools — a macOS dialog will open, click Install."
+say()  { printf '\033[36m·\033[0m %s\n' "$*"; }
+ok()   { printf '\033[32m✓\033[0m %s\n' "$*"; }
+die()  { printf '\033[31m✗\033[0m %s\n' "$*" >&2; exit 1; }
+
+[ "$(uname -s)" = Darwin ] || die "these dotfiles are macOS only (this is $(uname -s))"
+
+# 1. Command Line Tools — git lives here, so nothing else can happen first
+if xcode-select -p > /dev/null 2>&1; then
+    ok "Xcode Command Line Tools installed"
+else
+    say "Installing the Xcode Command Line Tools — click Install in the dialog that opens"
     xcode-select --install > /dev/null 2>&1 || true
-    until xcode-select -p > /dev/null 2>&1; do
+    while ! xcode-select -p > /dev/null 2>&1; do
         sleep 5
     done
+    ok "Xcode Command Line Tools installed"
 fi
+command -v git > /dev/null 2>&1 || die "git still isn't available — open Xcode once, then re-run this"
 
-if [[ -d $DEST/.git ]]; then
-    print "dotfiles already cloned at $DEST"
+# 2. Clone (or update) the repo
+if [ -d "$DEST/.git" ]; then
+    ok "dotfiles already cloned at $DEST"
+    git -C "$DEST" pull --ff-only --quiet || say "could not fast-forward $DEST, leaving it as is"
 else
-    mkdir -p "${DEST:h}"
-    git clone "$REPO" "$DEST"
+    say "Cloning into $DEST"
+    mkdir -p "$(dirname "$DEST")"
+    # GIT_CONFIG_GLOBAL=/dev/null: once these dotfiles are installed, ~/.gitconfig
+    # rewrites github https URLs to ssh, which needs a key this Mac may not have yet
+    GIT_CONFIG_GLOBAL=/dev/null git clone --branch "$BRANCH" "$REPO" "$DEST"
+    # ...but push over ssh, like every other repo here
+    case $REPO in
+        https://github.com/ameliagapin/dotfiles*) git -C "$DEST" remote set-url origin "$REPO_SSH" ;;
+    esac
+    ok "cloned to $DEST"
 fi
 
+# 3. Hand off to the installer
 cd "$DEST"
-exec ./dots < /dev/tty
+# stdin is the curl pipe, so read keys from the terminal instead. Testing the
+# device node isn't enough: it exists even with no controlling terminal, so
+# actually try to open it.
+if { : < /dev/tty; } 2>/dev/null; then
+    exec ./dots < /dev/tty
+else
+    ok "ready — run: cd $DEST && ./dots"
+fi

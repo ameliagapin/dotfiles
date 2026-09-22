@@ -5,12 +5,15 @@ macOS setup: apps, shell, git, tmux, Neovim, terminals, fonts. One tool,
 
 ## New Mac
 
+Run this first, before anything else — it needs nothing but a stock macOS:
+
 ```sh
-curl -fsSL https://raw.githubusercontent.com/ameliagapin/dotfiles/master/bootstrap | zsh
+curl -fsSL https://raw.githubusercontent.com/ameliagapin/dotfiles/master/bootstrap | bash
 ```
 
-That installs the Xcode Command Line Tools, clones this repo to
-`~/Projects/dotfiles` and opens the menu. Or by hand:
+It installs the Xcode Command Line Tools (waiting for the dialog), clones this
+repo to `~/Projects/dotfiles`, and opens the `./dots` menu. Re-running it just
+fast-forwards the clone. Or by hand:
 
 ```sh
 xcode-select --install
@@ -18,7 +21,9 @@ git clone https://github.com/ameliagapin/dotfiles.git ~/Projects/dotfiles
 cd ~/Projects/dotfiles && ./dots
 ```
 
-Nothing else is needed first — `dots` is plain zsh.
+From the menu, `ssh-key` then `homebrew` are the ones to run first on a new
+machine. To bootstrap a branch or a different location:
+`DOTFILES_BRANCH=some-branch DOTFILES_DIR=~/code/dotfiles curl … | bash`.
 
 ## Usage
 
