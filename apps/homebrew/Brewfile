@@ -67,6 +67,7 @@ brew "httpie"
 brew "hey"
 brew "nmap"
 brew "mas"
+brew "duti"   # default apps by UTI, used by ./dots macos
 
 # --- build tools & libraries ---
 brew "cmake"

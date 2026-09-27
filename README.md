@@ -49,6 +49,7 @@ machine. To bootstrap a branch or a different location:
 | `nvim-update` | updates plugins, parsers and Mason packages to latest (then commit `lazy-lock.json`) |
 | `fonts`       | copies `apps/fonts` into `~/Library/Fonts` |
 | `raycast`     | `~/.raycast-scripts` (add it as a script directory in Raycast) |
+| `macos`       | Finder, Dock, sound, caps-lock→escape, trackpad gestures, and Markdown/JSON default apps |
 
 ## Updating
 
