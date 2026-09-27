@@ -1,3 +1,8 @@
+-- LSP semantic tokens normally paint over treesitter (125 vs 100). The
+-- color overrides in config/style.lua are treesitter groups, so let
+-- treesitter win and keep tokens for what it doesn't cover.
+vim.hl.priorities.semantic_tokens = 95
+
 vim.lsp.enable({
     "gopls",
     "lua_ls",
@@ -52,9 +57,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.lsp.buf.format { async = true }
         end, opts)
 
-        -- vim.keymap.set('n', '<C-i>', function()
-        --     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-        -- end)
+        vim.keymap.set('n', '<leader>ih', function()
+            local enabled = vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }
+            vim.lsp.inlay_hint.enable(not enabled, { bufnr = event.buf })
+        end, { buffer = event.buf, desc = 'Toggle inlay hints' })
 
         local function client_supports_method(client, method, bufnr)
             if vim.fn.has 'nvim-0.11' == 1 then

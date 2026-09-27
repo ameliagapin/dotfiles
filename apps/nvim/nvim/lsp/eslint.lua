@@ -8,6 +8,9 @@ return {
         "typescriptreact",
         "typescript.tsx",
     },
+    -- Don't start in single-file mode (no project root): the server then
+    -- errors on every diagnostic request. Same as upstream nvim-lspconfig.
+    workspace_required = true,
     root_markers = {
         "eslint.config.js",
         "eslint.config.mjs",

@@ -5,7 +5,9 @@ return {
     -- Highlight other instances of the word under the cursor
     { 'RRethy/vim-illuminate' },
 
-    { 'HiPhish/rainbow-delimiters.nvim' },
+    -- submodules = false: upstream keeps test-only submodules that lazy can't
+    -- clone, which left the checkout dirty and stuck on an old commit
+    { 'HiPhish/rainbow-delimiters.nvim', submodules = false },
     {
         "aaronik/treewalker.nvim",
         opts = {

@@ -6,6 +6,8 @@ return {
     },
     opts = {
         run_in_floaterm = true,
+        -- off by default (go.nvim enables them globally otherwise); <leader>ih toggles
+        lsp_inlay_hints = { enable = false },
 
         floaterm = {
             posititon = 'bottom',
