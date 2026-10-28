@@ -47,6 +47,7 @@ machine. To bootstrap a branch or a different location:
 | `iterm`       | `~/.iterm`, and points iTerm2's preferences at it |
 | `nvim`        | `~/.config/nvim`, plugins from `lazy-lock.json`, treesitter parsers, LSP servers via Mason |
 | `nvim-update` | updates plugins, parsers and Mason packages to latest (then commit `lazy-lock.json`) |
+| `repos`       | lists the repos you can access on GitHub (via `gh`), grouped by owner with `ameliagapin` first; pick some with fzf and they're cloned into `~/Projects/<repo>`, skipping any that already exist |
 | `fonts`       | copies `apps/fonts` into `~/Library/Fonts` |
 | `raycast`     | `~/.raycast-scripts` (add it as a script directory in Raycast) |
 | `macos`       | Finder, Dock, sound, caps-lock→escape, trackpad gestures, and Markdown/JSON default apps |
